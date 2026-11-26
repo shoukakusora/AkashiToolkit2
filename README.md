@@ -1,4 +1,4 @@
-﻿# 明石工具箱 · Akashi Toolkit（kcwiki 数据同步版）
+﻿# 明石工具箱 · Akashi Toolkit
 
 > 舰队 Collection（艦これ）的离线资料查询工具：舰娘、深海栖姬、装备、任务、远征、海域、改修、统计。
 > 本项目是基于 [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit)（作者 Rikka）的**现代化重建 + 数据重制+功能的衍生**分支：
@@ -114,10 +114,10 @@ elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 R
 ## 数据来源与致谢
 
 - 数据与内容来自以下来源：
--  舰娘百科 https://zh.kcwiki.cn/wiki/（内容版权归原作者，CC 授权）
--  kcwiki 开放接口 https://api.kcwiki.org/（舰娘、装备、任务、远征、海域等资料）
--  poi-statistics@舰娘百科 https://db.kcwiki.cn/（开发公式与掉落统计）
--  明石改修工厂 https://akashi-list.me（可改修舰娘与曜日
+-  舰娘百科 https://zh.kcwiki.cn/wiki/ （内容版权归原作者，CC 授权）
+-  kcwiki 开放接口 https://api.kcwiki.org/ （舰娘、装备、任务、远征、海域等资料）
+-  poi-statistics@舰娘百科 https://db.kcwiki.cn/ （开发公式与掉落统计）
+-  明石改修工厂 https://akashi-list.me （可改修舰娘与曜日
 - 原项目 https://github.com/kcwikizh/Akashi-Toolkit
 - 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者，感谢大肥鱼deepseek及其团队。本构建仅做数据刷新与系统适配，不含商业用途。
 
