@@ -119,7 +119,7 @@ elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 R
 -  poi-statistics@舰娘百科 https://db.kcwiki.cn/（开发公式与掉落统计）
 -  明石改修工厂 https://akashi-list.me（可改修舰娘与曜日
 - 原项目 https://github.com/kcwikizh/Akashi-Toolkit
-- 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者。本构建仅做数据刷新与系统适配，不含商业用途。
+- 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者，感谢大肥鱼deepseek及其团队。本构建仅做数据刷新与系统适配，不含商业用途。
 
 
 
