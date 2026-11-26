@@ -1,7 +1,7 @@
 ﻿# 明石工具箱 · Akashi Toolkit（kcwiki 数据同步版）
 
 > 舰队 Collection（艦これ）的离线资料查询工具：舰娘、深海栖姬、装备、任务、远征、海域、改修、统计。
-> 本项目是 [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit)（作者 Rikka）的**现代化重建 + 数据重制**分支：
+> 本项目是基于 [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit)（作者 Rikka）的**现代化重建 + 数据重制+功能的衍生**分支：
 > 升级到 Android 14 构建链，重新从 [舰娘百科](https://zh.kcwiki.cn/) 等来源生成全部数据，并补上原版缺失的功能。
 
 ---
@@ -101,7 +101,8 @@ data-pipeline/                           数据生成脚本
 ## 构建与发布（CI）
 
 - uild：push/PR 时构建 debug APK 作为 artifact
-- elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
+- 
+elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
 - 详细步骤见 [docs/CI-AND-SIGNING.md](docs/CI-AND-SIGNING.md)
 
 ## 许可证
@@ -109,4 +110,17 @@ data-pipeline/                           数据生成脚本
 - 应用代码：**Apache License 2.0**（见 `LICENSE`），原始版本由 Rikka 开发。
 - 数据与图片：版权归舰娘百科及原始作者，按 CC BY-NC-SA 使用，仅限非商业用途。
 - 本项目与 DMM / 角川 / C2 机关无关。
+
+## 数据来源与致谢
+
+- 数据与内容来自以下来源：
+-  舰娘百科 https://zh.kcwiki.cn/wiki/（内容版权归原作者，CC 授权）
+-  kcwiki 开放接口 https://api.kcwiki.org/（舰娘、装备、任务、远征、海域等资料）
+-  poi-statistics@舰娘百科 https://db.kcwiki.cn/（开发公式与掉落统计）
+-  明石改修工厂 https://akashi-list.me（可改修舰娘与曜日
+- 原项目 https://github.com/kcwikizh/Akashi-Toolkit
+- 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者。本构建仅做数据刷新与系统适配，不含商业用途。
+
+
+
 
