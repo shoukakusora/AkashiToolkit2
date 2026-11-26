@@ -1,4 +1,4 @@
-# 明石工具箱 · Akashi Toolkit（kcwiki 数据同步版）
+﻿# 明石工具箱 · Akashi Toolkit（kcwiki 数据同步版）
 
 > 舰队 Collection（艦これ）的离线资料查询工具：舰娘、深海栖姬、装备、任务、远征、海域、改修、统计。
 > 本项目是 [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit)（作者 Rikka）的**现代化重建 + 数据重制**分支：
@@ -97,8 +97,16 @@ data-pipeline/                           数据生成脚本
 - 掉落表本身没有百分比列，因此按「点 → 舰娘」列出，不展示概率。
 - 应用内「刷新」依赖网络；首次安装后的内置数据即可离线浏览。
 
+
+## 构建与发布（CI）
+
+- uild：push/PR 时构建 debug APK 作为 artifact
+- elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
+- 详细步骤见 [docs/CI-AND-SIGNING.md](docs/CI-AND-SIGNING.md)
+
 ## 许可证
 
 - 应用代码：**Apache License 2.0**（见 `LICENSE`），原始版本由 Rikka 开发。
 - 数据与图片：版权归舰娘百科及原始作者，按 CC BY-NC-SA 使用，仅限非商业用途。
 - 本项目与 DMM / 角川 / C2 机关无关。
+

@@ -1,0 +1,71 @@
+name: release
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  signed-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Ensure SDK packages
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then
+            SDKMANAGER=$(find "$ANDROID_HOME" -name sdkmanager -type f | head -n 1)
+          fi
+          yes | "$SDKMANAGER" --licenses > /dev/null 2>&1 || true
+          "$SDKMANAGER" "platforms;android-34" "build-tools;34.0.0" "platform-tools" > /dev/null
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+
+      # 在仓库 Settings → Secrets and variables → Actions 中配置：
+      #   KEYSTORE_BASE64     : base64 -w0 release.jks 的输出
+      #   KEYSTORE_PASSWORD   : 密钥库口令
+      #   KEY_ALIAS           : key alias
+      #   KEY_PASSWORD        : key 口令
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$GITHUB_WORKSPACE/release.jks"
+          ls -l "$GITHUB_WORKSPACE/release.jks"
+
+      - name: Build signed release APK
+        env:
+          AKASHI_KEYSTORE: ${{ github.workspace }}/release.jks
+          AKASHI_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          AKASHI_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          AKASHI_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          cp signing.gradle.sample signing.gradle
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace assembleRelease -PnoVersionBump
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: signed-release-apk
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+
+      - name: Create / update GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          APK=$(ls app/build/outputs/apk/release/*.apk | head -n 1)
+          gh release create "$tag" "$APK" --title "$tag" --notes "自动构建的签名 APK" || \
+            gh release upload "$tag" "$APK" --clobber
