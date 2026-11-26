@@ -1,0 +1,153 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">@color/colorPrimary</item>
+
+        <item name="popupMenuStyle">@style/AppTheme.PopupMenu</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="bottomSheetDialogTheme">@style/AppTheme.BottomSheetDialog</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">@color/colorPrimary</item>
+
+        <item name="popupMenuStyle">@style/AppTheme.PopupMenu</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="bottomSheetDialogTheme">@style/AppTheme.BottomSheetDialog</item>
+    </style>
+
+    <style name="AppTheme.NavigationView">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Settings" parent="AppTheme.NoActionBar">
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="Transparent" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="AppTheme.ItemActivity" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimary">@color/colorPrimaryItemActivity</item>
+        <item name="colorPrimaryDark">@color/colorItemDisplayStatusBar</item>
+
+        <!--<item name="homeAsUpIndicator">@drawable/ic_clear_24dp</item>-->
+        <item name="actionOverflowButtonStyle">@style/AppTheme.ActionButton.Overflow.Dark</item>
+
+        <item name="popupMenuStyle">@style/AppTheme.PopupMenu</item>
+    </style>
+
+    <style name="AppTheme.ImagesActivity" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/colorImageDisplayBackground</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryDark">@color/colorItemDisplayStatusBar</item>
+    </style>
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Alert" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogWhenLarge" parent="Theme.AppCompat.DayNight.DialogWhenLarge">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.ActionButton.Overflow.Dark" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="srcCompat">@drawable/ic_more_vert_black_24dp</item>
+    </style>
+
+    <style name="ItemActivity.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/itemDisplayTitle</item>
+    </style>
+
+    <style name="ItemActivity.Subtitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">@color/itemDisplaySubtitle</item>
+    </style>
+
+    <style name="BookmarkSwitch">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="switchStyle">@style/AppTheme.Switch.Bookmark</item>
+    </style>
+
+    <style name="AppTheme.Switch.Bookmark" parent="@style/Widget.AppCompat.CompoundButton.Switch">
+        <item name="track">@drawable/switch_track_bookmark</item>
+        <item name="android:thumb">@drawable/switch_thumb_bookmark</item>
+    </style>
+
+    <style name="AppTheme.PopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="overlapAnchor">true</item>
+        <item name="android:dropDownHorizontalOffset">-4dip</item>
+    </style>
+
+    <style name="HomeCard">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/card_twitter_margin_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/card_twitter_margin_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/card_twitter_margin_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/card_twitter_margin_vertical</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@color/cardBackground</item>
+        <item name="cardCornerRadius">2dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardMaxElevation">4dp</item>
+    </style>
+
+    <style name="AppTheme.BottomSheetDialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
+        <item name="bottomSheetStyle">@style/AppTheme.BottomSheet.Modal</item>
+    </style>
+
+    <style name="AppTheme.BottomSheet.Modal" parent="android:Widget">
+        <item name="android:background">@color/cardBackground</item>
+        <item name="android:windowElevation" tools:ignore="NewApi">0dp</item>
+        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
+        <item name="behavior_peekHeight">auto</item>
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_skipCollapsed">false</item>
+    </style>
+
+</resources>

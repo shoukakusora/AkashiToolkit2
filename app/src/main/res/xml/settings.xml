@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/setting_category_language">
+
+        <SimpleMenuPreference
+            android:key="app_language"
+            android:title="@string/ui_language"
+            android:summary="%s"/>
+
+        <SimpleMenuPreference
+            android:key="data_language"
+            android:title="@string/data_language"
+            android:summary="%s"/>
+
+        <SwitchPreference
+            android:key="data_title_language"
+            android:title="@string/data_language_title"
+            android:summary="@string/data_language_title_summary"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="ui"
+        android:title="@string/setting_category_ui">
+
+        <SwitchPreference
+            android:key="twitter_grid_layout"
+            android:title="@string/twitter_grid_layout"
+            android:summary="@string/twitter_grid_layout_summary"
+            android:defaultValue="false"/>
+
+        <SwitchPreference
+            android:key="show_ship_banner"
+            android:title="@string/show_ship_banner"
+            android:summary="@string/show_ship_banner_summary"
+            android:defaultValue="true"/>
+
+        <SwitchPreference
+            android:key="open_in_new_document"
+            android:title="@string/open_in_new_document"
+            android:summary="@string/open_in_new_document_summary"
+            android:defaultValue="true"/>
+
+        <SimpleMenuPreference
+            android:key="night_mode"
+            android:title="@string/night_mode"
+            android:summary="%s"
+            android:entries="@array/night_mode"
+            android:entryValues="@array/night_mode_value"
+            android:defaultValue="0"/>
+
+        <SwitchPreference
+            android:key="nav_bar_color"
+            android:title="@string/nav_bar_color"
+            android:summary="@string/nav_bar_color_summary"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/category_cache">
+
+        <SimpleMenuPreference
+            android:key="cache_max_size"
+            android:title="@string/cache_max_size"
+            android:summary="%s"
+            android:entries="@array/cache_max_size"
+            android:entryValues="@array/cache_max_size_value"
+            android:defaultValue="250"/>
+
+        <Preference
+            android:key="clear_cache"
+            android:title="@string/clear_cache"
+            android:summary="@string/clear_cache_summary"/>
+
+    </PreferenceCategory>
+
+    <!--
+    <PreferenceCategory
+        android:title="@string/category_notification">
+
+        <MultiSelectListPreference
+            android:key="notification_topics"
+            android:title="@string/push_subscribed_topics"
+            android:entries="@array/push_topics"
+            android:entryValues="@array/push_topics_value"/>
+
+        <SwitchPreference
+            android:key="notification_sound"
+            android:title="@string/notification_sound"
+            android:defaultValue="false"/>
+
+        <SimpleMenuPreference
+            android:key="notification_priority"
+            android:title="@string/notification_priority"
+            android:summary="%s"
+            android:entries="@array/notification_priority"
+            android:entryValues="@array/notification_priority_value"
+            android:defaultValue="0"/>
+
+    </PreferenceCategory>
+-->
+    <PreferenceCategory
+        android:key="twitter"
+        android:title="@string/category_twitter">
+
+        <EditTextPreference
+            android:key="twitter_count"
+            android:title="@string/twitter_count"
+            android:summary="%s"
+            android:defaultValue="30"
+            android:inputType="number"
+            app:commitOnEnter="true"
+            android:selectAllOnFocus="true">
+        </EditTextPreference>
+
+        <SimpleMenuPreference
+            android:key="twitter_display_language"
+            android:title="@string/twitter_display_language"
+            android:summary="%s"
+            android:entries="@array/twitter_display_language"
+            android:entryValues="@array/twitter_display_language_value"
+            android:defaultValue="0"/>
+
+        <SwitchPreference
+            android:key="share_no_footer"
+            android:title="@string/share_no_footer"
+            android:summary="@string/share_no_footer_summary"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <!--<PreferenceCategory
+        android:title="@string/category_item">
+
+        <SwitchPreference
+            android:key="display_enemy"
+            android:title="@string/display_enemy"
+            android:defaultValue="false">
+        </SwitchPreference>
+
+    </PreferenceCategory>-->
+
+    <PreferenceCategory
+        android:key="update"
+        android:title="@string/category_update">
+
+        <SimpleMenuPreference
+            android:key="update_check_channel"
+            android:title="@string/update_check_channel"
+            android:summary="%s"
+            android:entries="@array/update_check_channel"
+            android:entryValues="@array/update_check_channel_value"
+            android:defaultValue="0"/>
+
+        <Preference
+            android:key="reset_read"
+            android:title="@string/reset_read"
+            android:summary="@string/reset_read_summary"/>
+
+        <!--
+        //此条已被原作者注释掉
+        <Preference
+            android:key="delete_downloaded_date"
+            android:title="@string/delete_downloaded_date"
+            android:summary="@string/delete_downloaded_date_summary"/>-->
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

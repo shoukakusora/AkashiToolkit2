@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:id="@+id/text_card_title2"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/item_padding"
+    android:paddingRight="@dimen/item_padding"
+    android:singleLine="true"
+    android:textSize="@dimen/card_font_medium"
+    tools:text="はじめての「編成」！"/>
+
+    <!--android:drawableLeft="@drawable/ic_open_in_new_24dp"
+        android:drawableStart="@drawable/ic_open_in_new_24dp"
+        android:drawablePadding="8dp"-->

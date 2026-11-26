@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.internal.ForegroundLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/cardBackground"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:paddingBottom="12dp"
+    android:paddingLeft="@dimen/item_padding"
+    android:paddingRight="@dimen/item_padding"
+    android:paddingTop="12dp">
+
+    <ImageView
+        android:id="@android:id/icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        android:visibility="visible"
+        tools:src="@drawable/system_icon_01_24dp"
+        tools:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_weight="0.84"
+        android:orientation="vertical">
+        <!--android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"-->
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="@dimen/card_font_large"
+            tools:text="12.7cm連装砲"/>
+
+        <TextView
+            android:id="@android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/card_font_medium"
+            android:lineSpacingExtra="6dp"
+            tools:text="12.7cm連装砲 ★+10\n无"/>
+
+    </LinearLayout>
+
+    <rikka.akashitoolkit.ui.widget.CheckBoxCompat
+        android:id="@android:id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:buttonCompat="@drawable/btn_bookmark_material_anim_32dp"
+        tools:button="@drawable/btn_bookmark_material_anim_32dp"
+        app:buttonDrawableTint="@color/control_checkable_material"/>
+
+</android.support.design.internal.ForegroundLinearLayout>

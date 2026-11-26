@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_nav_home_24dp"
+            android:title="@string/home"/>
+
+        <!--<item
+            android:id="@+id/nav_twitter"
+            android:icon="@drawable/ic_nav_twitter_24dp"
+            android:title="@string/official_twitter"/>-->
+
+        <item
+            android:id="@+id/nav_new"
+            android:icon="@drawable/ic_nav_new_24dp"
+            android:title="@string/event"/>
+
+        <item
+            android:id="@+id/nav_equip_improve"
+            android:icon="@drawable/ic_nav_item_improvement"
+            android:title="@string/item_improvement"/>
+
+        <item
+            android:id="@+id/nav_equip"
+            android:icon="@drawable/system_icon_01_24dp"
+            android:title="@string/equip"/>
+
+        <item
+            android:id="@+id/nav_ship"
+            android:icon="@drawable/ic_nav_ship_24dp"
+            android:title="@string/ship"/>
+
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_nav_map_24dp"
+            android:title="@string/maps"/>
+
+        <item
+            android:id="@+id/nav_enemy"
+            android:visible="true"
+            android:icon="@drawable/ic_nav_ship_24dp"
+            android:title="@string/enemy"/>
+
+        <item
+            android:id="@+id/nav_quest"
+            android:icon="@drawable/ic_nav_quest_24dp"
+            android:title="@string/quest"/>
+
+        <item
+            android:id="@+id/nav_expedition"
+            android:icon="@drawable/ic_nav_expedition_24dp"
+            android:title="@string/expedition"/>
+
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_nav_tools_24dp"
+            android:title="@string/tools"/>
+    </group>
+
+    <group
+        android:checkableBehavior="none"
+        android:id="@+id/nav_id">
+        <item
+            android:id="@+id/nav_stats"
+            android:icon="@drawable/ic_nav_stats_24dp"
+            android:title="统计"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/setting"/>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="@string/about"/>
+    </group>
+</menu>

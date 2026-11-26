@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="screen">
+
+    <Preference
+        android:key="feedback"
+        android:title="@string/data_feedback"
+        android:summary="首选现维护者 shoukakusora@hotmail.com（可选原开发者）"/>
+
+    <Preference
+        android:key="developer_contact"
+        android:title="开发者联系方式"
+        android:summary="原作者 Rikka · rikkanyaaa+akashiToolkitFeedback@gmail.com"/>
+
+    <Preference
+        android:key="donate_alipay"
+        android:title="我要打钱"
+        android:summary="支付宝扫码（推荐使用支付宝）"/>
+
+    <Preference
+        android:key="data_source_thanks"
+        android:title="数据来源与致谢"
+        android:summary="舰娘百科 · kcwiki 开放接口 · 原开源项目"/>
+
+    <Preference
+        android:key="sync_expedition"
+        android:title="从舰娘百科同步远征数据"
+        android:summary="抓取 zh.kcwiki.cn 最新远征列表并覆盖本地数据"/>
+
+    <Preference
+        android:key="sync_quest"
+        android:title="从舰娘百科同步任务数据"
+        android:summary="抓取 zh.kcwiki.cn 最新任务列表并覆盖本地数据"/>
+
+    <Preference
+        android:key="sync_home"
+        android:title="刷新主页（最新更新 / 季节性）"
+        android:summary="从 zh.kcwiki.cn 重新抓取，立刻显示最新季节与更新"/>
+
+    <Preference
+        android:key="sync_improvement"
+        android:title="刷新每日改修（akashi-list.me）"
+        android:summary="从 akashi-list.me 重新抓取，按天/按舰娘更新改修表"/>
+
+    <Preference
+        android:key="sync_development"
+        android:title="刷新开发公式"
+        android:summary="从舰娘百科重新抓取开发公式（与 db.kcwiki.cn/development 同源）"/>
+
+    <Preference
+        android:key="sync_construction"
+        android:title="刷新建造公式"
+        android:summary="从舰娘百科重新抓取建造公式（普通公式 + 目标舰娘常用公式）"/>
+
+    <Preference
+        android:key="sync_drop"
+        android:title="刷新掉落统计"
+        android:summary="按最新海域掉落表重建掉落统计（与 db.kcwiki.cn/drop 同源）"/>
+
+    <Preference
+        android:key="offline_cache"
+        android:title="补齐缺失图片 / 立绘"
+        android:summary="从 wiki 下载 APK 内缺失的舰娘缩略图与装备立绘，之后离线可用"/>
+
+    <Preference
+        android:key="crash_log"
+        android:title="上次崩溃日志"
+        android:summary="查看并复制最近一次崩溃的堆栈信息"/>
+
+    <Preference
+        android:key="version"
+        android:title="@string/version"
+        android:summary="0.14.3 (2026-11)"/>
+
+    <Preference
+        android:title="@string/data_source"
+        android:summary="kcwiki 舰娘百科">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://zh.kcwiki.cn/wiki/%E8%88%B0%E5%A8%98%E7%99%BE%E7%A7%91"/>
+
+    </Preference>
+
+    <Preference
+        android:title="@string/homepage"
+        android:summary="https://app.kcwiki.org/">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://app.kcwiki.org/"/>
+
+    </Preference>
+
+    <Preference
+        android:title="@string/source_code"
+        android:summary="https://github.com/kcwikizh/Akashi-Toolkit">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/kcwikizh/Akashi-Toolkit"/>
+
+    </Preference>
+
+</PreferenceScreen>

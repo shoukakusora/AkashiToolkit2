@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:showIn="@layout/card_quest_detail">
+
+    <include layout="@layout/card_inside_numbers"/>
+
+    <!-- Rewards described by reward.entries: a vertical list of icons / text rows -->
+    <LinearLayout
+        android:id="@+id/reward_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"/>
+
+    <!-- Fallback for quests without reward.entries -->
+    <TextView
+        android:id="@+id/text_quest_reward_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineSpacingExtra="2dp"
+        android:textSize="@dimen/card_font_medium"
+        tools:text="驱逐舰白雪\n11\n11"/>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/item_activity_margin"
+              android:paddingRight="@dimen/item_activity_margin">
+
+    <TextView
+        android:id="@android:id/title"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:maxWidth="0dp"
+        android:textSize="16sp"
+        android:maxLines="1"
+        tools:text="吹雪"/>
+
+    <ImageView
+        android:id="@android:id/icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical|end"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_arrow_forward_24dp"/>
+
+</LinearLayout>

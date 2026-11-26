@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExpandableLayout">
+        <attr name="isExpanded" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="IconSwitchCompat">
+        <attr name="minWidth" format="dimension"/>
+
+        <attr name="thumbColor" format="color|reference"/>
+        <attr name="trackColor" format="color|reference"/>
+        <attr name="iconColor" format="color|reference"/>
+
+        <attr name="iconDrawable" format="reference"/>
+        <attr name="iconDrawableChecked" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BezelImageView">
+        <attr name="maskDrawable" format="reference"/>
+        <attr name="borderDrawable" format="reference"/>
+        <attr name="desaturateOnPress" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ForegroundFrameLayout">
+        <attr name="android:foregroundGravity"/>
+        <attr name="android:foreground"/>
+        <attr name="foregroundInsidePadding"/>
+    </declare-styleable>
+
+    <declare-styleable name="ForegroundRelativeLayout">
+        <attr name="android:foregroundGravity"/>
+        <attr name="android:foreground"/>
+        <attr name="foregroundInsidePadding"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnimatedStateListDrawableItem">
+        <attr name="android:id"/>
+        <attr name="android:drawable"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnimatedStateListDrawableTransition">
+        <attr name="android:drawable"/>
+        <attr name="android:fromId"/>
+        <attr name="android:toId"/>
+        <attr name="android:reversible"/>
+    </declare-styleable>
+
+    <declare-styleable name="CheckBoxCompat">
+        <attr name="buttonCompat" format="reference"/>
+        <attr name="buttonDrawableTint" format="reference"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
+        tools:context=".MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <rikka.akashitoolkit.ui.widget.IconSwitchCompat
+                    android:id="@+id/switch_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:theme="@style/BookmarkSwitch"
+                    app:iconColor="@color/icon_switch_icon"
+                    app:iconDrawable="@drawable/ic_bookmark_border_24dp"
+                    app:iconDrawableChecked="@drawable/ic_bookmark_24dp"
+                    app:minWidth="52dp"
+                    app:thumbColor="@color/icon_switch_thumb"
+                    app:trackColor="@color/icon_switch_track"/>
+
+            </android.support.v7.widget.Toolbar>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingLeft="@dimen/tab_layout_padding"
+                android:paddingRight="@dimen/tab_layout_padding"
+                app:tabIndicatorColor="@color/material_indigo_accent_100"
+                app:tabMode="scrollable"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </FrameLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.NavigationView"
+        app:menu="@menu/drawer_main"/>
+
+    <!--app:headerLayout="@layout/nav_header_main"-->
+
+    <android.support.design.internal.ScrimInsetsFrameLayout
+        android:id="@+id/nav_view_right"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/background"
+        android:clickable="true"
+        android:fillViewport="false"
+        android:fitsSystemWindows="false"
+        android:focusable="true"
+        app:insetForeground="#4000">
+
+    </android.support.design.internal.ScrimInsetsFrameLayout>
+
+</android.support.v4.widget.DrawerLayout>

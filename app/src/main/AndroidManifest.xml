@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="rikka.akashitoolkit"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- Android 13+ (API 33): runtime permission required to post notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission
+        android:name="android.permission.VIBRATE"
+        android:maxSdkVersion="18"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="23"/>
+
+    <!-- Android 12+ (API 31): required for AlarmManager.setExact(); the code falls back to an
+         inexact alarm when the user has not granted it (Android 13+ denies it by default). -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+
+    <uses-sdk tools:overrideLibrary="moe.shizuku.fontprovider.api"/>
+
+    <!-- Android 11+ package visibility: used by PackageUtils.getLaunchIntent() to offer a
+         "launch the game" shortcut from expedition notifications. -->
+    <queries>
+        <package android:name="com.dmm.dmmlabo.kancolle"/>
+    </queries>
+
+    <application
+        android:name=".Application"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_scheme"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="rikka.akashitoolkit.support.AppGlideModule"
+            android:value="GlideModule"/>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="14724a50f9b4697ae7e68998e3a3004758c84b56" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
+        </activity>
+        <activity
+            android:name=".settings.SettingActivity"
+            android:label="@string/setting"
+            android:theme="@style/AppTheme.Settings">
+        </activity>
+        <activity
+            android:name=".settings.AboutActivity"
+            android:label="@string/about"
+            android:theme="@style/AppTheme.Settings">
+        </activity>
+
+        <!--
+        <activity
+            android:name=".ui.SendReportActivity"
+            android:theme="@style/Transparent">
+            <intent-filter>
+                <action android:name="rikka.akashitoolkit.SEND_LOG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        -->
+
+        <activity
+            android:name=".equip_detail.EquipDetailActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.ItemActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="item"
+                    android:scheme="akashitoolkit"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ship_detail.ShipDetailActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.ItemActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="ship"
+                    android:scheme="akashitoolkit"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".map.MapActivity"
+            android:theme="@style/AppTheme.ItemActivity">
+        </activity>
+        <activity
+            android:name=".stats.StatsActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.ItemActivity">
+        </activity>
+        <activity
+            android:name=".event.EventMapActivity"
+            android:theme="@style/AppTheme.ItemActivity">
+        </activity>
+        <activity
+            android:name=".gallery.ImagesActivity"
+            android:theme="@style/AppTheme.ImagesActivity">
+        </activity>
+
+        <!--
+        <activity
+            android:name=".ui.RankingActivity"
+            android:label="@string/ranking"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        -->
+
+        <activity
+            android:name=".tools.ExpCalcActivity"
+            android:label="@string/exp_calc"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".fleet_editor.FleetListActivity"
+            android:label="@string/fleets"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <receiver
+            android:name=".receiver.ExpeditionAlarmReceiver"
+            android:exported="false"/>
+        <receiver
+            android:name=".receiver.ExpeditionAlarmResetReceiver"
+            android:exported="false"/>
+
+        <activity
+            android:name=".fleet_editor.FleetEditActivity"
+            android:label="@string/fleet_edit"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".gallery.GalleryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".voice.VoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".fleet_editor.ShipSelectActivity"
+            android:label="@string/ship_select"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".fleet_editor.EquipSelectActivity"
+            android:label="@string/equip_select"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".TwitterActivity"
+            android:label="@string/official_twitter"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>

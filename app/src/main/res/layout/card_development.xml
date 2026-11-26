@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/HomeCard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/text_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="@dimen/card_font_large"
+            android:textStyle="bold"
+            tools:text="目标：九一式彻甲弹:4%"/>
+
+        <TextView
+            android:id="@+id/text_ship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="@dimen/card_font_medium"
+            tools:text="秘书舰：炮战系"/>
+
+        <TextView
+            android:id="@+id/text_resource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="@dimen/card_font_medium"
+            tools:text="资源：燃料 10 / 弹药 30 / 钢铁 90 / 铝 10"/>
+
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="@dimen/card_font_medium"
+            tools:text="产物：20.3cm(2号)连装炮:2%"/>
+
+        <TextView
+            android:id="@+id/text_extra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="@dimen/card_font_medium"
+            tools:text="追加条件：弹药提高到90，铝提高到30"/>
+
+        <TextView
+            android:id="@+id/text_extra_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="@dimen/card_font_medium"
+            tools:text="追加产物：三式弹:4%"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

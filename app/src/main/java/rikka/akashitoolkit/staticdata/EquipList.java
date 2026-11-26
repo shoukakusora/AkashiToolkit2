@@ -1,0 +1,152 @@
+package rikka.akashitoolkit.staticdata;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.util.Log;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import rikka.akashitoolkit.BuildConfig;
+import rikka.akashitoolkit.model.Equip;
+import rikka.akashitoolkit.model.EquipType;
+import rikka.akashitoolkit.model.EquipTypeParent;
+import rikka.akashitoolkit.model.Ship;
+import rikka.akashitoolkit.support.Settings;
+
+/**
+ * Created by Rikka on 2016/3/23.
+ */
+public class EquipList {
+    private static final String FILE_NAME = "Equip.json";
+
+    private static List<Equip> sList;
+
+    public static List<Equip> get() {
+        return sList;
+    }
+
+    public static synchronized List<Equip> get(final Context context) {
+        if (sList == null) {
+            sList = new BaseGSONList<Equip>() {
+                @Override
+                public void afterRead(List<Equip> list) {
+                    filter(list);
+                    setType(list);
+                    sort(list);
+                    setBookmarked(context, list);
+                    makeEquippedShipList(context, list);
+                }
+            }.get(context, FILE_NAME, new TypeToken<ArrayList<Equip>>() {}.getType());
+        }
+        return sList;
+    }
+
+    private static void setType(List<Equip> list) {
+        // 防御脏数据：类型数组缺失/过短时使用默认类型，避免启动时越界崩溃
+        for (Equip equip : list) {
+            try {
+                int[] types = equip.getTypes();
+                int typeId = (types != null && types.length > 2) ? types[2] : 0;
+                EquipType equipType = EquipTypeList.get(typeId);
+                equip.setEquipType(equipType);
+                if (equipType != null) {
+                    equip.setEquipTypeParent(EquipTypeParentList.get(equipType.getParent()));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("EquipList", "setType failed: " + equip.getId());
+            }
+        }
+    }
+
+    public static synchronized void clear() {
+        sList = null;
+    }
+
+    private static void filter(List<Equip> list) {
+        List<Equip> newList = new ArrayList<>();
+        for (Equip e : list) {
+            if (e.getId() != 209) {
+                newList.add(e);
+            }
+        }
+        list.clear();
+        list.addAll(newList);
+    }
+
+    private static void makeEquippedShipList(Context context, List<Equip> list) {
+        List<Ship> ships = ShipList.get(context);
+
+        for (Equip equip : list) {
+            List<Integer> ids = new ArrayList<>();
+            equip.setShipFrom(ids);
+
+            for (Ship ship : ships) {
+                if (ship.getEquip() == null) {
+                    continue;
+                }
+
+                for (int equipId : ship.getEquip().getId()) {
+                    if (equipId == equip.getId()
+                            && ids.indexOf(ship.getId()) == -1) {
+                        ids.add(ship.getId());
+                    }
+                }
+            }
+        }
+    }
+
+    @SuppressLint("DefaultLocale")
+    private static void setBookmarked(Context context, List<Equip> list) {
+        for (Equip equip :
+                list) {
+            //equip.setParentType(EquipTypeList.findItemById(context, equip.getType()).getPatentId());
+
+            if (equip.getId() > 500) {
+                continue;
+            }
+
+            equip.setBookmarked(Settings.instance(context)
+                    .getBoolean(String.format("equip_%d", equip.getId()), false));
+        }
+    }
+
+    private static void sort(List<Equip> list) {
+        List<Equip> newList = new ArrayList<>();
+        int curType = 1;
+        while (newList.size() != list.size()) {
+            for (Equip item :
+                    list) {
+                if (curType == item.getType()) {
+                    newList.add(item);
+                }
+            }
+            curType ++;
+        }
+        list.clear();
+        list.addAll(newList);
+    }
+
+    public static Equip findItemById(Context context, int id) {
+        for (Equip item :
+             get(context)) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public static Equip findItemById(int id) {
+        for (Equip item :
+                sList) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+}

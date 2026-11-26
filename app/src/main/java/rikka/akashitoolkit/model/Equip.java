@@ -1,0 +1,261 @@
+package rikka.akashitoolkit.model;
+
+import java.util.List;
+
+/**
+ * Created by Rikka on 2016/3/26.
+ */
+public class Equip extends BaseDataModel {
+
+    private EquipType mEquipType;
+    private EquipTypeParent mEquipTypeParent;
+
+    public EquipType getEquipType() {
+        return mEquipType;
+    }
+
+    public void setEquipType(EquipType equipType) {
+        mEquipType = equipType;
+    }
+
+    public EquipTypeParent getEquipTypeParent() {
+        return mEquipTypeParent;
+    }
+
+    public void setEquipTypeParent(EquipTypeParent equipTypeParent) {
+        mEquipTypeParent = equipTypeParent;
+    }
+
+    private MultiLanguageEntry name;
+    private MultiLanguageEntry introduction;
+    private String remark;
+    private AttributeEntity attr;
+    private int rarity;
+    private int[] type;
+    private List<Integer> shipLimit;
+    private List<Integer> shipFrom;
+
+    private int[] broken;
+
+    public int getIcon() {
+        return typeAt(3);
+    }
+
+    public int getType() {
+        return typeAt(2);
+    }
+
+    public int[] getBrokenResources() {
+        return broken;
+    }
+
+    public void setBrokenResources(int[] broken) {
+        this.broken = broken;
+    }
+
+    public MultiLanguageEntry getName() {
+        return name;
+    }
+
+    public List<Integer> getShipFrom() {
+        return shipFrom;
+    }
+
+    public void setShipFrom(List<Integer> shipFrom) {
+        this.shipFrom = shipFrom;
+    }
+
+    public void setName(MultiLanguageEntry name) {
+        this.name = name;
+    }
+
+    public MultiLanguageEntry getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(MultiLanguageEntry introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public AttributeEntity getAttr() {
+        return attr;
+    }
+
+    public void setAttr(AttributeEntity attr) {
+        this.attr = attr;
+    }
+
+    public int getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(int rarity) {
+        this.rarity = rarity;
+    }
+
+
+    /** 安全读取类型数组，避免脏数据（长度不足）导致崩溃 */
+    private int typeAt(int index) {
+        if (type == null || index < 0 || index >= type.length) {
+            return 0;
+        }
+        return type[index];
+    }
+
+    public int[] getTypes() {
+        return type;
+    }
+
+    public List<Integer> getShipLimit() {
+        return shipLimit;
+    }
+
+    public void setShipLimit(List<Integer> shipLimit) {
+        this.shipLimit = shipLimit;
+    }
+
+    private ImprovementEntity[] improvements;
+
+    public ImprovementEntity[] getImprovements() {
+        return improvements;
+    }
+
+    public void setImprovements(ImprovementEntity[] improvements) {
+        this.improvements = improvements;
+    }
+
+    public static class ImprovementEntity {
+        private String remark;
+        private int[] cost;
+        private int[] item;
+        private int[] item2;
+        private int[] item3;
+        private List<List<Integer>> ship;
+        private int[] upgrade;
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public int[] getCost() {
+            return cost;
+        }
+
+        public int[] getItem() {
+            return item;
+        }
+
+        public int[] getItem2() {
+            return item2;
+        }
+
+        public int[] getItem3() {
+            return item3;
+        }
+
+        public List<List<Integer>> getShips() {
+            return ship;
+        }
+
+        public int[] getUpgrade() {
+            return upgrade;
+        }
+    }
+
+    public boolean isAircraft() {
+        return typeAt(3) == 6 || typeAt(3) == 7 || typeAt(3) == 8 || typeAt(3) == 9 || typeAt(3) == 10
+                || typeAt(3) == 21 || typeAt(3) == 22 || typeAt(3) == 33 || typeAt(3) == 37 || typeAt(3) == 38
+                || typeAt(2) == 57;
+    }
+
+    /**
+     * @return 是否为舰载机
+     */
+    public boolean isCarrierBasedAircraft() {
+        return typeAt(3) == 6 || typeAt(3) == 7 || typeAt(3) == 8 || typeAt(2) == 57;
+    }
+
+    /**
+     * @return 是否为水上机
+     */
+    public boolean isSeaplane() {
+        //
+        return typeAt(3) == 6 || typeAt(2) == 11 || typeAt(3) == 45;
+    }
+
+    private StatusEntity status;
+
+    public static class StatusEntity {
+        private int research;
+        private int improvement;
+        private int upgrade;
+        private int rank;
+
+        public int getResearch() {
+            return research;
+        }
+
+        public int getImprovement() {
+            return improvement;
+        }
+
+        public int getUpgrade() {
+            return upgrade;
+        }
+
+        public int getRank() {
+            return rank;
+        }
+    }
+
+    /**
+     * @return 是否可以开发
+     */
+    public boolean isResarchable() {
+        return status.research == 1;
+    }
+
+    /**
+     * @return 是否可以改修
+     */
+    public boolean isImprovable() {
+        return status.improvement == 1;
+    }
+
+    /**
+     * @return 是否可以更新
+     */
+    public boolean isUpgradeable() {
+        return status.upgrade == 1;
+    }
+
+    /**
+     * @return 是否有熟练度
+     */
+    public boolean isRankupable() {
+        return status.rank == 1;
+    }
+
+    /**
+     * @return 是否为敌人装备
+     */
+    public boolean isEnemy() {
+        return getId() >= 500;
+    }
+
+    @Override
+    public String toString() {
+        return "Equip{" +
+                "id=" + getId() +
+                ", name='" + name.getZhCN() + '\'' +
+                '}';
+    }
+}

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">明石工具箱</string>
+
+    <string name="navigation_drawer_open">打开抽屉</string>
+    <string name="navigation_drawer_close">关闭抽屉</string>
+
+    <string name="action_settings">设置</string>
+    <string name="home">主页</string>
+    <string name="official_twitter">官推</string>
+    <string name="about">关于</string>
+    <string name="maps">海域</string>
+    <string name="setting">设置</string>
+
+    <string name="night_mode">夜间模式</string>
+    <string name="night_mode_off">关闭</string>
+    <string name="night_mode_on">开启</string>
+    <string name="night_mode_auto">自动</string>
+    <string name="night_mode_follow_system">跟随系统</string>
+
+    <string name="quest">任务</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="new_twitter">%d 条新推文</string>
+
+    <string name="action_refresh">刷新</string>
+
+    <string name="category_general">通用</string>
+    <string name="category_twitter">官推</string>
+    <string name="twitter_count">推文数量</string>
+    <string name="twitter_display_language">显示语言</string>
+    <string name="twitter_display_language_both">原文及翻译</string>
+    <string name="twitter_display_language_ja">原文 (日语)</string>
+    <string name="twitter_display_language_zh">翻译 (简体中文)</string>
+    <string name="no_new_tweet">没有新推文</string>
+    <string name="twitter_grid_layout">网格布局</string>
+    <string name="twitter_grid_layout_summary">同时展示两列内容</string>
+    <string name="twitter_history_avatars">历史头像</string>
+    <string name="twitter_view_on_twitter">在 Twitter 查看</string>
+
+    <string name="ship">舰娘</string>
+
+    <string name="quest_reward">奖励</string>
+    <string name="quest_require">条件</string>
+    <string name="quest_consume">消耗</string>
+    <string name="expedition">远征</string>
+
+    <string name="expedition_flagship_format">旗舰等级: %s</string>
+    <string name="expedition_flagship_total">合计等级: %s</string>
+
+    <string name="version_format" formatted="false">%s (%d)</string>
+    <string name="version">版本</string>
+
+    <string name="category_update">更新和消息</string>
+    <string name="update_check_channel">更新通道</string>
+    <string name="every_time_open_app">每次访问首页 (显示在首页)</string>
+    <string name="manually">手动</string>
+    <string name="no_translated">(翻译待补全)</string>
+    <string name="item_improvement">改修</string>
+    <string name="reset_read">重置已读</string>
+    <string name="got_it">知道啦</string>
+    <string name="not_now">才不要</string>
+    <string name="ignore_update">才不要 (忽略本次升级)</string>
+    <string name="download">去下载</string>
+    <string name="reset_read_summary">重置已读消息包括升级提示</string>
+    <string name="read_status_reset">已读消息已重置</string>
+    <string name="stable">稳定版</string>
+    <string name="latest">最新版 (可能有更多问题)</string>
+    <string name="please_refresh">请手动刷新</string>
+    <string name="open_link">打开链接</string>
+    <string name="todo_card_format" formatted="false">当前版本: %s\n%s</string>
+    <string name="today">(今日)</string>
+    <string name="action_filter">筛选</string>
+    <string name="action_search">搜索</string>
+    <string name="equip">装备</string>
+    <string name="attributes">属性</string>
+    <string name="item_improvement_data">改修数据</string>
+    <string name="remark">备注</string>
+    <string name="item_get">获取途径</string>
+    <string name="data_source">数据来源</string>
+    <string name="category_item">装备</string>
+    <string name="display_enemy">显示敌人装备</string>
+    <string name="introduction">图鉴说明</string>
+    <string name="ship_can_equip">可装备舰种</string>
+    <string name="ship_initial_equip">初始装备舰娘</string>
+    <string name="image_load_error">图片加载失败</string>
+    <string name="tools">工具</string>
+    <string name="exp_calc">经验计算器</string>
+    <string name="exp_calc_map">海域</string>
+    <string name="exp_calc_result">结果</string>
+    <string name="exp_calc_cur_lv">当前等级</string>
+    <string name="exp_calc_target_lv">目标等级</string>
+    <string name="exp_calc_to_next">距离下一级</string>
+    <string name="exp_calc_result_format" formatted="false">合计经验\n%d\n\n每场经验 / 剩余场数\n基础 %d / %d\n旗舰 %d / %d\nMVP %d / %d\nMVP和旗舰 %d / %d</string>
+    <string name="exp_calc_error">数据有误</string>
+
+    <string name="ui_language">应用语言</string>
+    <string name="data_language">数据语言</string>
+    <string name="data_language_title">使用日语标题</string>
+    <string name="data_language_title_summary">对任务标题等显示日语</string>
+    <string name="action_picture">图片</string>
+    <string name="illustration">图鉴</string>
+    <string name="remodel">改造</string>
+    <string name="equip_and_load">初始装备 &amp; 搭载量</string>
+    <string name="equip_not_found">找不到装备 (id: %d)</string>
+    <string name="not_equipped">未装备</string>
+    <string name="initial">初期值</string>
+    <string name="saved">已保存 %s</string>
+    <string name="save_failed">保存失败</string>
+    <string name="require_write_external_storage_permission">需要写外置存储权限才能保存</string>
+    <string name="open">打开</string>
+    <string name="download_wifi_only">只在有WiFi的情况下下载图片</string>
+    <string name="voice">语音</string>
+    <string name="new_content">季节性</string>
+
+    <string name="category_notification">通知</string>
+    <string name="notification_sound">通知提示音</string>
+    <string name="notification_priority">通知优先级</string>
+    <string name="data_feedback">反馈</string>
+
+    <string-array name="notification_priority">
+        <item>最低</item>
+        <item>低</item>
+        <item>默认</item>
+        <item>高</item>
+        <item>最高</item>
+    </string-array>
+
+    <string name="sort">排序</string>
+    <string name="ship_type">类型</string>
+    <string name="ship_class">舰级</string>
+
+    <string name="action_bookmark">收藏</string>
+    <string name="bookmark_add">已收藏</string>
+    <string name="bookmark_remove">已移除</string>
+
+    <string name="night_mode_require_restart">您需要重启应用来试设置生效。</string>
+    <string name="restart_app">立即重启</string>
+    <string name="continue_use">继续使用</string>
+
+    <string name="night_mode_system_auto">您的系统夜间模式设置为自动，应用内设置为自动可能不会生效。</string>
+
+    <string name="nav_bar_color">导航栏颜色</string>
+    <string name="nav_bar_color_summary">使用主题颜色</string>
+
+    <string name="category_cache">缓存</string>
+    <string name="cache_max_size">最大缓存空间</string>
+    <string name="no_limit">无限制</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="clear_cache_summary">清除缓存的图片、语音等</string>
+    <string name="cleared">已清除</string>
+    <string name="ranking">战果查询</string>
+
+    <string name="feedback_summary">发送邮件给开发者</string>
+    <string name="donate">捐赠开发者</string>
+    <string name="donate_alipay">捐赠开发者 (通过支付宝)</string>
+    <string name="telegram_group">Telegram 群组</string>
+    <string name="telegram_group_join">点击加入 (如果有兴趣加入开发)</string>
+    <string name="qq_group">QQ群</string>
+    <string name="homepage">主页</string>
+    <string name="source_code">源码</string>
+
+    <string name="send_via">发送方式</string>
+    <string name="no_mail_app">没有邮件客户端的样子</string>
+
+    <string name="copied_to_clipboard_format">%s 已复制到剪贴板</string>
+    <string name="copied_to_clipboard">已复制到剪贴板</string>
+
+    <string name="nothing_bookmarked">没有书签</string>
+    <string name="nothing_bookmarked_summary">您可以通过长按和在详情视图中按下书签图标来将该项目加入书签。</string>
+
+    <string name="share">分享</string>
+    <string name="share_text">仅分享文字</string>
+    <string name="copy_original_text">复制原文</string>
+    <string name="copy_translated_text">复制译文</string>
+
+    <string name="daily_equip_improve">今日改修</string>
+    <string name="bookmarked_items">收藏的项目</string>
+    <string name="bookmarked_items_no">没有收藏的项目</string>
+    <string name="all_equip_improve_item">全部改修项目</string>
+    <string name="all_expedition_item">全部远征项目</string>
+
+    <string name="new_version_available">有新版本啦</string>
+    <string name="new_version_summary" formatted="false">新版本: %s - %d</string>
+    <string name="new_version_content" formatted="false">更新内容: \n%s</string>
+
+    <string name="enemy">深海栖舰</string>
+    <string name="all">全部</string>
+    <string name="expedition_finished">远征已完成</string>
+    <string name="expedition_notify">远征提醒</string>
+    <string name="finished">已完成</string>
+    <string name="not_started">未开始</string>
+    <string name="detail">详情</string>
+
+    <string name="attr_firepower">火力</string>
+    <string name="attr_hp">耐久</string>
+    <string name="attr_aa">对空</string>
+    <string name="attr_torpedo">雷装</string>
+    <string name="attr_armor">装甲</string>
+    <string name="attr_asw">对潜</string>
+    <string name="attr_evasion">回避</string>
+    <string name="attr_los">索敌</string>
+    <string name="attr_speed">航速</string>
+    <string name="attr_range">射程</string>
+    <string name="attr_range_aircraft">航程</string>
+    <string name="attr_luck">运</string>
+    <string name="attr_accuracy">命中</string>
+    <string name="attr_boom">爆装</string>
+
+    <string name="range_short">短</string>
+    <string name="range_medium">中</string>
+    <string name="range_long">长</string>
+    <string name="range_very_long">超长</string>
+
+    <string name="speed_fast">高速</string>
+    <string name="speed_slow">低速</string>
+    <string name="speed_none">无</string>
+
+    <string name="improvement_branch" formatted="false">分支 → %s</string>
+    <string name="improvement_any">任意</string>
+    <string name="improvement_resource">必要资源</string>
+    <string name="improvement_upgrade">升级</string>
+    <string name="improvement_upgrade_to">升级为</string>
+
+    <string name="open_in_new_document">分离任务</string>
+    <string name="open_in_new_document_summary">在概览屏幕以单独任务的形式展示每个详情视图</string>
+
+    <string name="show_ship_banner">显示舰娘横幅</string>
+    <string name="show_ship_banner_summary">在舰娘列表和深海栖舰列表显示头像横幅</string>
+
+    <string name="not_remodel">未改造</string>
+    <string name="final_remodel">最终改造</string>
+
+    <string name="equip_improve_list_ship_format">秘书舰: %s</string>
+
+    <string name="quest_before">前置任务</string>
+    <string name="quest_after">后续任务</string>
+    <string name="quest_new">新</string>
+    <string name="quest_latest">最新</string>
+
+    <string name="quest_normal">常规任务</string>
+    <string name="quest_daily">日常任务</string>
+    <string name="quest_weekly">周常任务</string>
+    <string name="quest_monthly">月常任务</string>
+
+    <string name="search_hint_quest">搜索名称、介绍…</string>
+    <string name="search_hint_ship">搜索名称、罗马音、中文名拼音…</string>
+
+    <string name="search_result">搜索结果</string>
+
+    <string name="fleets">舰队</string>
+    <string name="fleet_edit">编辑舰队</string>
+
+    <string name="view_all">查看全部</string>
+    <string name="view_all_format">查看全部 (和其他 %d 个)</string>
+
+    <string name="blueprint">改装设计图</string>
+    <string name="catapult">试制甲板用弹射器</string>
+
+    <string name="fleet_fp">制空</string>
+
+    <string name="ship_select">舰娘选择</string>
+    <string name="equip_select">装备选择</string>
+
+    <string name="fleet_select_ship">选择舰娘…</string>
+    <string name="fleet_change_equip_attr">更改属性</string>
+    <string name="fleet_change_equip">更换装备</string>
+    <string name="fleet_view_equip">查看装备</string>
+    <string name="fleet_delete_equip">删除装备</string>
+
+    <string name="fleet_no_ship">没有舰娘</string>
+    <string name="fleet_total_level">总等级 %d</string>
+    <string name="fleet_high_speed">高速舰队</string>
+    <string name="fleet_low_speed">低速舰队</string>
+    <string name="fleet_consume" formatted="false">消耗 %d / %d </string>
+
+    <string name="fleet_equip_improvement">改修</string>
+    <string name="fleet_equip_rank">熟练度</string>
+
+    <string name="fleet_view_ship">查看舰娘</string>
+    <string name="fleet_change_level">更改等级</string>
+    <string name="fleet_change_ship">更改舰娘</string>
+    <string name="fleet_delete_ship">删除舰娘</string>
+
+    <string name="fleet_rename">重命名</string>
+    <string name="fleet_export">复制数据</string>
+    <string name="fleet_delete">删除</string>
+
+    <string name="fleet_select_equip">选择装备</string>
+
+    <string name="fleet_default_title">新的舰队</string>
+
+    <string name="event">活动</string>
+
+    <string name="donate_via_google_play">通过 Google Play 捐赠</string>
+
+    <string name="donate_gp_thanks">感谢您的支持</string>
+    <string name="donate_gp_set_up_failed">设置应用内结算失败，可能是您没有安装 Google Play。</string>
+
+    <string name="donate_alipay_thanks">有了提督君的支持，我会变得更好用的哟~</string>
+    <string name="donate_alipay_not_installed">您没有安装支付宝客户端</string>
+    <string name="donate_alipay_disabled">您的支付宝已被禁用</string>
+
+    <string name="share_as_image">以图片分享</string>
+    <string name="preview">预览</string>
+
+    <string name="send_via_akashi_toolkit">由明石工具箱发送</string>
+
+    <string name="share_no_footer">不要加入页脚</string>
+    <string name="share_no_footer_summary">在以图片分享时不要在加入页脚</string>
+
+    <string name="res_fuel">燃料</string>
+    <string name="res_ammo">弹药</string>
+    <string name="res_steel">钢铁</string>
+    <string name="res_bauxite">铝</string>
+
+    <string name="share_via">分享方式</string>
+
+    <string name="home_card_voice_summary">%d 条语音</string>
+    <string name="ship_detail_illustrator_cv">画师 &amp; 声优</string>
+    <string name="ship_detail_consume_break_modernization">消耗 &amp; 解体 &amp; 合成</string>
+    <string name="ship_detail_get">入手方式</string>
+
+    <string name="play_service_check_google_play_not_installed">您的设备没有安装 Google Play</string>
+    <string name="play_service_check_reason">您正在使用 Google Play 版，但您的设备没有安装 Google Play。\n由于该版本没有内置更新提示，我们更推荐您使用非 Google Play 版。\n同时如果您是中国大陆用户，由于推送使用 Firebase Cloud Messaging，使用该版本您可能无法正常收到推送。</string>
+    <string name="play_service_check_ignore">继续使用</string>
+    <string name="play_service_check_download_non_play_version">下载非 Google Play 版</string>
+
+    <string name="setting_category_language">语言</string>
+    <string name="setting_category_ui">外观</string>
+
+    <string name="view_on_kcwiki">在舰娘百科查看</string>
+
+    <string name="push_subscribed_topics">接收的推送内容</string>
+
+    <string name="push_topic_game_news">游戏消息 (游戏维护通知等)</string>
+    <string name="push_topic_kcwiki">kcwiki 消息 (词条更新等)</string>
+    <string name="push_topic_other">其他</string>
+
+    <string name="reset_alarm">重置提醒</string>
+
+    <string name="view_detail">查看详情</string>
+
+    <!--
+    <string name="push_introduction">介绍新的推送功能</string>
+    <string name="push_introduction_content">我们会为您准备诸如游戏维护提醒，舰娘百科词条更新等内容。\n为了不对您造成打扰，您需要先选择您想要的内容。\n\n您可以随时设置中更改您想要接收的通知内容。</string>
+    <string name="push_introduction_choose">选择您感兴趣内容</string>
+    -->
+</resources>

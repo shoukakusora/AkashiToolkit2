@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    android:paddingTop="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/item_padding"
+        android:paddingRight="@dimen/item_padding">
+
+        <TextView
+            android:id="@+id/text_card_title"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="@dimen/card_font_large"
+            tools:text="初次的“编成”！"/>
+
+        <TextView
+            android:id="@+id/text_quest_type2"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:background="@drawable/quest_code_bg"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/day_text_color"
+            android:textSize="@dimen/card_font_large"
+            tools:text="New"
+            android:minWidth="24dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"/>
+
+        <TextView
+            android:id="@+id/text_quest_type"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/quest_code_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/day_text_color"
+            android:textSize="@dimen/card_font_large"
+            tools:text="周"
+            android:minWidth="24dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"/>
+
+    </LinearLayout>
+
+    <rikka.akashitoolkit.ui.widget.ExpandableLayout
+        android:id="@+id/expandableLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_quest_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@null"
+                android:gravity="fill_vertical"
+                android:paddingLeft="@dimen/item_padding"
+                android:paddingRight="@dimen/item_padding"
+                android:textSize="@dimen/card_font_medium"
+                tools:text="以两艘以上的阵容编成“舰队”！"/>
+
+            <TextView
+                android:id="@+id/text_quest_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:gravity="fill_vertical"
+                android:paddingLeft="@dimen/item_padding"
+                android:paddingRight="@dimen/item_padding"
+                android:textSize="@dimen/card_font_medium"
+                tools:text="以两艘以上的阵容编成“舰队”！"/>
+
+            <include
+                layout="@layout/card_inside_reward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="@dimen/item_padding"
+                android:layout_marginRight="@dimen/item_padding"
+                android:layout_marginTop="6dp"/>
+
+            <LinearLayout
+                android:id="@+id/quest_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </rikka.akashitoolkit.ui.widget.ExpandableLayout>
+
+</LinearLayout>

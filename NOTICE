@@ -1,0 +1,26 @@
+Akashi Toolkit (kcwiki data edition)
+Copyright 2016-2018 Rikka
+Copyright 2026 Akashi Toolkit contributors (modernization + data rebuild)
+
+This product includes software developed as part of the
+Akashi-Toolkit project (https://github.com/kcwikizh/Akashi-Toolkit),
+licensed under the Apache License, Version 2.0.
+
+Data and images
+---------------
+Ship / equipment / quest / expedition / map data, illustrations and event
+images are sourced from the KanColle Wiki (kctwili) community:
+  - https://zh.kcwiki.cn/          (text data, CC BY-NC-SA)
+  - https://api.kcwiki.org/        (game master data)
+  - https://upload.kcwiki.org/     (illustrations)
+  - https://akashi-list.me/        (daily improvement table)
+  - https://db.kcwiki.cn/          (development / drop statistics reference)
+
+They remain the property of their respective authors and are used here for a
+non-commercial fan tool only. This project is not affiliated with DMM,
+Kadokawa or C2 Kikan.
+
+Third-party libraries (selected)
+--------------------------------
+Retrofit, OkHttp, Gson, Glide, RxJava/RxAndroid, Android Support Library,
+Otto, Markdown (RikkaW), FontProvider (moe.shizuku).

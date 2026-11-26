@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
+        tools:context=".MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <rikka.akashitoolkit.ui.widget.IconSwitchCompat
+                    android:id="@+id/switch_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:theme="@style/BookmarkSwitch"
+                    app:iconColor="@color/icon_switch_icon"
+                    app:iconDrawable="@drawable/ic_bookmark_border_24dp"
+                    app:iconDrawableChecked="@drawable/ic_bookmark_24dp"
+                    app:minWidth="52dp"
+                    app:thumbColor="@color/icon_switch_thumb"
+                    app:trackColor="@color/icon_switch_track"/>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <rikka.minidrawer.MiniDrawerLayout
+            android:id="@+id/mini_drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:drawer_menu="@menu/drawer_main"
+            app:drawer_padding="8dp"
+            app:drawer_width="72dp"
+            app:drawer_width_expanded="288dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:attr/windowBackground"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/windowBackground"
+                    android:clipToPadding="false"
+                    android:elevation="0dp"
+                    app:tabIndicatorColor="@color/material_indigo_accent_100"
+                    app:tabMinWidth="0dp"
+                    app:tabMode="scrollable"
+                    app:tabPaddingEnd="@dimen/tab_padding"
+                    app:tabPaddingStart="@dimen/tab_padding"/>
+            </LinearLayout>
+
+        </rikka.minidrawer.MiniDrawerLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.internal.ScrimInsetsFrameLayout
+        android:id="@+id/nav_view_right"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/background"
+        android:clickable="true"
+        android:fillViewport="false"
+        android:fitsSystemWindows="false"
+        android:focusable="true"
+        app:insetForeground="#4000">
+
+    </android.support.design.internal.ScrimInsetsFrameLayout>
+
+</android.support.v4.widget.DrawerLayout>

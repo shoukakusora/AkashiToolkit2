@@ -1,0 +1,61 @@
+<resources>
+    <bool name="is_tablet">false</bool>
+    <bool name="is_horizontal">false</bool>
+
+    <dimen name="wrap_content">-2px</dimen>
+    <dimen name="match_parent">-1px</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">180dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="item_activity_margin">16dp</dimen>
+
+    <!-- Activity width -->
+    <dimen name="activity_width_item">@dimen/match_parent</dimen>
+    <dimen name="activity_width_ship">@dimen/match_parent</dimen>
+    <dimen name="activity_width_map">@dimen/match_parent</dimen>
+
+    <!-- List padding -->
+    <dimen name="grid_padding">0dp</dimen>
+    <dimen name="list_padding">4dp</dimen>
+
+    <!-- Card font sizes -->
+    <dimen name="card_font_title">18sp</dimen>
+    <dimen name="card_font_large">16sp</dimen>
+    <dimen name="card_font_medium">14sp</dimen>
+    <dimen name="card_quest_subtitle_min_width">60dp</dimen>
+    <dimen name="card_font_small">12sp</dimen>
+
+    <!-- Card size -->
+    <dimen name="card_width">@dimen/match_parent</dimen>
+
+    <!-- Card margin -->
+    <dimen name="card_home_margin_vertical">-2dp</dimen>
+    <dimen name="card_home_margin_horizontal">2dp</dimen>
+    <dimen name="card_twitter_margin_vertical">-2dp</dimen>
+    <dimen name="card_twitter_margin_horizontal">0dp</dimen>
+    <dimen name="card_margin_vertical">-2dp</dimen>
+    <dimen name="card_margin_horizontal">0dp</dimen>
+
+    <dimen name="card_twitter_padding_vertical">8dp</dimen>
+    <dimen name="card_twitter_padding_horizontal">8dp</dimen>
+
+    <!-- Right drawer -->
+    <dimen name="drawer_header">56dp</dimen>
+    <dimen name="drawer_item">48dp</dimen>
+    <dimen name="drawer_item_subtitle">32dp</dimen>
+
+    <!-- Item -->
+    <dimen name="item_height">56dp</dimen>
+    <dimen name="item_padding">16dp</dimen>
+    <dimen name="item_equip_divider_padding">40dp</dimen>
+
+    <dimen name="tab_layout_padding">8dp</dimen>
+    <dimen name="tab_padding">16dp</dimen>
+</resources>

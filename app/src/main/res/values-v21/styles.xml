@@ -1,0 +1,40 @@
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+
+    <style name="AppTheme.ItemActivity" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimary">#ffffff</item>
+        <item name="colorPrimaryDark">@color/colorItemDisplayStatusBar</item>
+        <item name="actionOverflowButtonStyle">@style/AppTheme.ActionButton.Overflow.Dark</item>
+
+        <!--<item name="android:windowLightStatusBar">true</item>-->
+    </style>
+
+    <style name="AppTheme.ImagesActivity" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">#ffffff</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+
+        <item name="android:windowBackground">@color/colorImageDisplayBackground</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.ActionButton.Overflow.Dark" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_black_24dp</item>
+    </style>
+</resources>
