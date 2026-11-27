@@ -261,8 +261,17 @@ public class QuestViewHolder extends RecyclerView.ViewHolder implements IBindVie
 
                 List<String> options = new java.util.ArrayList<>();
                 int j = i + 1;
-                while (j < entries.size() && entries.get(j) != null && !"text".equals(entries.get(j).type)) {
-                    String label = resolveRewardLabel(context, entries.get(j));
+                while (j < entries.size()) {
+                    Quest.RewardEntry option = entries.get(j);
+                    if (option == null) {
+                        j++;
+                        continue;
+                    }
+                    // 下一组「…选一」标题：结束当前组
+                    if ("text".equals(option.type) && option.text != null && option.text.contains("选一")) {
+                        break;
+                    }
+                    String label = resolveRewardLabel(context, option);
                     if (!TextUtils.isEmpty(label)) {
                         options.add(label);
                     }
@@ -413,7 +422,11 @@ public class QuestViewHolder extends RecyclerView.ViewHolder implements IBindVie
             }
             return formatRewardName(shipName, entry.count);
         }
-        return TextUtils.isEmpty(entry.text) ? "" : entry.text;
+        if (TextUtils.isEmpty(entry.text)) {
+            return "";
+        }
+        // 文字选项里的 xN / XN 统一成 ×N
+        return entry.text.replaceAll("(?i)x(\\d+)", "×$1");
     }
 
     private static Ship findShip(int id) {

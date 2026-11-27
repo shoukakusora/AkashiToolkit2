@@ -7,6 +7,8 @@ import time
 import urllib.parse
 import urllib.request
 
+import update_text as update_text_mod
+
 BASE = r"C:\Users\Administrator\Documents\deepseek-harness\default-workspace\apkwork"
 CACHE = os.path.join(BASE, "gen", "cache")
 OUT = os.path.join(BASE, "gen", "out_assets")
@@ -202,7 +204,9 @@ def updates():
     for title in titles[:4]:
         text = raw(title)
         date = title.split("/")[-1]
-        body = clean_text(strip_wiki(text), 10)
+        body = update_text_mod.update_text(text)
+        if not body:
+            body = clean_text(strip_wiki(text))
         if not body:
             continue
         imgs = images_of(text, 6)
@@ -265,7 +269,14 @@ def seasonal():
                 "images": imgs,
             })
             if len(events) >= 14:
-                return events
+                break
+    events = events[:14]
+    # 仅最新季节展示完整内容；已过的季节只保留标题
+    for i, event in enumerate(events):
+        if i == 0:
+            continue
+        event["text"] = ""
+        event["images"] = []
     return events
 
 

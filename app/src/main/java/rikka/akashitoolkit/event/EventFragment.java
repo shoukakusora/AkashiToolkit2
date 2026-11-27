@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import rikka.akashitoolkit.R;
 import rikka.akashitoolkit.ui.fragments.DrawerFragment;
 import rikka.akashitoolkit.ui.widget.RecyclerView;
+import rikka.akashitoolkit.sync.EventSyncManager;
 
 /**
  * 活动 / Events page backed by the local {@code Event.json} instead of the old
@@ -55,9 +56,31 @@ public class EventFragment extends DrawerFragment {
                     return;
                 }
 
-                EventData.clear();
-                mAdapter.setItemList(EventData.get(getContext()));
-                mSwipeRefreshLayout.setRefreshing(false);
+                final android.content.Context context = getContext().getApplicationContext();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            rikka.akashitoolkit.sync.EventSyncManager.sync(context);
+                        } catch (Exception e) {
+                            android.util.Log.w("EventFragment", "sync events failed", e);
+                        }
+                        if (getActivity() == null) {
+                            return;
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (getContext() == null) {
+                                    return;
+                                }
+                                EventData.clear();
+                                mAdapter.setItemList(EventData.get(getContext()));
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                }).start();
             }
         });
     }
