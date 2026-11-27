@@ -1,8 +1,10 @@
 name: release
 
 on:
-  push:
-    tags: [ 'v*' ]
+  # 手动触发：配置好 Secrets（KEYSTORE_BASE64 等）后在此手动运行
+  # 如需打 tag 自动构建，取消下面两行注释
+  # push:
+  #   tags: [ 'v*' ]
   workflow_dispatch:
 
 permissions:
