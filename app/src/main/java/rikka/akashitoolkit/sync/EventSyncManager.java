@@ -23,12 +23,25 @@ public class EventSyncManager {
 
     private static final String TAG = "EventSyncManager";
 
-    /** server/events.json（可直接替换为你自己部署的 PHP 接口地址）。 */
+    /** 自建 PHP 服务（event.php）。留空则跳过，使用下面的静态镜像。 */
+    public static final String EVENT_PHP_URL = "";
+
+    /** server/events.json —— server/event.php 的静态镜像。 */
     public static final String EVENTS_URL =
             "https://raw.githubusercontent.com/Shoukakusora/AkashiToolkit2/main/server/events.json";
 
     public static int sync(Context context) throws Exception {
-        String json = http(EVENTS_URL);
+        String json = null;
+        if (!EVENT_PHP_URL.isEmpty()) {
+            try {
+                json = http(EVENT_PHP_URL);
+            } catch (Exception e) {
+                Log.w(TAG, "php endpoint failed, fallback to static mirror", e);
+            }
+        }
+        if (json == null) {
+            json = http(EVENTS_URL);
+        }
         JSONArray array = new JSONArray(json);
         if (array.length() == 0) {
             throw new IllegalStateException("events.json 为空");

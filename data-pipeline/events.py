@@ -1,4 +1,5 @@
 """Build Event.json (活动/限定海域) and server/events.json from wiki event pages."""
+import html
 import json
 import os
 import re
@@ -36,6 +37,7 @@ def raw(title):
 
 
 def clean(s):
+    s = html.unescape(s)
     s = s.replace("\u00a0", " ")
     s = re.sub(r"\[\[(?:File|文件|Image):[^\]]*\]\]", "", s, flags=re.I)
     s = re.sub(r"\[\[([^\[\]|]*)\|([^\[\]]*)\]\]", r"\2", s)
@@ -60,6 +62,15 @@ def text_of(page, limit_lines=40):
             continue
         if re.fullmatch(r"=+.*=+", line):
             continue
+        # 跳过倒计时模板残留
+        if re.search(r"\{[A-Z]+\}", line) or "countdown" in line.lower():
+            continue
+        if line in ("活动已经开始", "活动已经结束"):
+            continue
+        if line.startswith("!") or line.startswith("/"):
+            continue
+        if not re.search(r"[\u4e00-\u9fff0-9A-Za-z]", line):
+            continue
         lines.append(line)
         if len(lines) >= limit_lines:
             break
@@ -77,6 +88,15 @@ def images_of(page, limit=10):
     return out
 
 
+TITLES = {
+    "2026年夏季活动": (
+        "2026年夏季活动 反击！第三十一战队的战斗 / 法兰西舰队的跃动",
+        "2026年7月8日 21:00 — 2026年9月10日 10:00（已结束）",
+        "共 5 张海域（E-1～E-5）。新舰娘：桐、花月、里诺、印第安纳、独立、秃鹫、阿尔及利亚、维斯比、日枝丸、贝阿恩。",
+    ),
+}
+
+
 def main():
     titles = ["2026年夏季活动", "2025年冬季活动", "2025年秋季活动", "2025年夏季活动"]
     entries = []
@@ -86,11 +106,18 @@ def main():
         if not page or len(page) < 800:
             continue
         year = title[:4]
+        override = TITLES.get(title)
+        full_title = override[0] if override else title
+        date_line = override[1] if override else ""
+        if override and len(override) > 2:
+            body = (date_line + "\n" + override[2]).strip()
+        else:
+            body = date_line
         entries.append({
             "id": title,
-            "title": title,
+            "title": full_title,
             "date": year,
-            "text": text_of(page),
+            "text": body,
             "link": "https://zh.kcwiki.cn/wiki/" + urllib.parse.quote(title.replace(" ", "_")),
             "images": images_of(page),
         })
