@@ -63,7 +63,17 @@ public class WikiListAdapter extends BaseRecyclerAdapter<WikiListAdapter.ViewHol
             mContent.setVisibility(TextUtils.isEmpty(content) ? View.GONE : View.VISIBLE);
 
             List<String> images = data.getImages();
-            String url = images.size() > 0 ? Utils.getKCWikiFileUrl(images.get(0)) : null;
+            String url = null;
+            if (images.size() > 0) {
+                String fileName = images.get(0);
+                int dot = fileName.lastIndexOf('.');
+                if (dot > 0) {
+                    fileName = fileName.substring(0, dot);
+                }
+                // 缩略图随 APK 内置（assets/homeimg），无需联网
+                url = rikka.akashitoolkit.support.ImageStore.resolve(
+                        mImage.getContext(), "homeimg", fileName + ".jpg");
+            }
             if (url != null) {
                 mImage.setVisibility(View.VISIBLE);
                 Glide.with(mImage.getContext())
