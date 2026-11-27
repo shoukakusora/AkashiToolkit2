@@ -124,7 +124,7 @@ public class DataSyncManager {
         JSONObject home = new JSONObject();
         JSONArray gameInfo = new JSONArray();
         try {
-            String old = http("file:///android_asset/Home.json", null);
+            String old = http("file:///android_asset/Home2.json", null);
             JSONObject oldHome = new JSONObject(old);
             gameInfo = oldHome.optJSONArray("game_info");
         } catch (Exception ignored) {
@@ -177,7 +177,7 @@ public class DataSyncManager {
     private static JSONArray syncUpdates(Context context) throws Exception {
         JSONArray out = new JSONArray();
         String api = "https://zh.kcwiki.cn/api.php?action=query&format=json&list=allpages"
-                + "&apprefix=" + URLEncoder.encode("游戏更新/", "UTF-8") + "&aplimit=20";
+                + "&apprefix=" + URLEncoder.encode("游戏更新/", "UTF-8") + "&aplimit=100&apdir=descending";
         JSONObject res = new JSONObject(http(api, "https://zh.kcwiki.cn/"));
         JSONArray pages = res.getJSONObject("query").getJSONArray("allpages");
         List<String> titles = new ArrayList<>();
@@ -202,7 +202,7 @@ public class DataSyncManager {
             }
             JSONObject entry = new JSONObject();
             entry.put("title", title.substring(title.lastIndexOf('/') + 1) + " 游戏更新");
-            String text = stripWiki(page);
+            String text = WikiUpdateText.updateText(page);
             entry.put("text", text);
             entry.put("link", "https://zh.kcwiki.cn/wiki/"
                     + URLEncoder.encode(title.replace(" ", "_"), "UTF-8").replace("+", "%20"));
