@@ -62,8 +62,8 @@ def strip_wiki(s, keep_lines=True):
 
 
 
-def clean_text(body, limit=8):
-    """去掉 gallery/标题/表格/文件行，只留可读文字。"""
+def clean_text(body, limit=None):
+    """去掉 gallery/标题/表格/文件行，只留可读文字（limit=None 保留全文）。"""
     body = re.sub(r"<gallery[^>]*>.*?</gallery>", "", body, flags=re.S | re.I)
     keep = []
     for ln in body.split("\n"):
@@ -76,12 +76,12 @@ def clean_text(body, limit=8):
             continue
         if ln.startswith("|") or ln.startswith("{|") or ln.startswith("|-"):
             continue
-        if len(ln) < 6:
+        if len(ln) < 2:
             continue
-        if not re.search(r"[\u4e00-\u9fff]", ln):
+        if not re.search(r"[\u4e00-\u9fff0-9A-Za-z]", ln):
             continue
         keep.append(ln)
-        if len(keep) >= limit:
+        if limit is not None and len(keep) >= limit:
             break
     return "\n".join(keep)
 
@@ -210,7 +210,7 @@ def updates():
             imgs = page_image(title)
         items.append({
             "title": date + " 游戏更新",
-            "text": body[:1200],
+            "text": body,
             "link": "https://zh.kcwiki.cn/wiki/" + urllib.parse.quote(title.replace(" ", "_")),
             "images": imgs,
         })
@@ -255,12 +255,12 @@ def seasonal():
             imgs = images_of(page, 8)
             if not imgs:
                 imgs = page_image(page_title)
-            body = clean_text(strip_wiki(page), 8) if page else ""
+            body = clean_text(strip_wiki(page)) if page else ""
             events.append({
                 "id": path.strip("/").replace("/", "-"),
                 "title": title,
                 "date": year,
-                "text": body[:800],
+                "text": body,
                 "link": "https://zh.kcwiki.cn/wiki/" + urllib.parse.quote(page_title.replace(" ", "_")),
                 "images": imgs,
             })

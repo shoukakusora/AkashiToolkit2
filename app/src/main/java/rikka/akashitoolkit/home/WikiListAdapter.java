@@ -64,17 +64,18 @@ public class WikiListAdapter extends BaseRecyclerAdapter<WikiListAdapter.ViewHol
 
             List<String> images = data.getImages();
             String url = images.size() > 0 ? Utils.getKCWikiFileUrl(images.get(0)) : null;
-            mImage.setVisibility(View.VISIBLE);
             if (url != null) {
+                mImage.setVisibility(View.VISIBLE);
                 Glide.with(mImage.getContext())
                         .load(Utils.getGlideUrl(url))
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .crossFade()
                         .into(mImage);
             } else {
-                // 页面本身没有立绘时用占位图，保证卡片有缩略图区域
+                // 没有缩略图就不显示图片区域（不占位）
                 Glide.clear(mImage);
-                mImage.setImageResource(R.drawable.home_thumb_placeholder);
+                mImage.setImageDrawable(null);
+                mImage.setVisibility(View.GONE);
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {

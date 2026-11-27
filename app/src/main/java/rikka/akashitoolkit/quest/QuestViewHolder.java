@@ -467,7 +467,8 @@ public class QuestViewHolder extends RecyclerView.ViewHolder implements IBindVie
             name = "";
         }
         if (count > 0) {
-            return name + "x" + count;
+            // 例：12.7cm连装炮D型改二★+2×1
+            return name + "×" + count;
         }
         return name;
     }

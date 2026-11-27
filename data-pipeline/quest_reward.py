@@ -125,7 +125,7 @@ def parse_reward(text, ship_map, equip_map, item_map):
     return _merge_stars(entries)
 
 
-STAR_RE = re.compile(r"^\s*[\u2605\u2606]\s*[+\uff0b]?\s*\d+")
+STAR_RE = re.compile(r"^\s*[\u2605\u2606]\s*(?:[mM][aA][xX]|[+\uff0b]?\s*\d+)")
 
 
 def _merge_stars(entries):
@@ -139,6 +139,15 @@ def _merge_stars(entries):
                 prev = merged[-1]
                 star = m.group(0).replace(" ", "")
                 rest = text[m.end():].strip()
+
+                # 「★+4×2」：把数量并回 count，不要写进名称
+                cm = re.match(r"^[×xX]\s*(\d+)$", rest)
+                if cm and prev.get("type") != "text":
+                    prev["count"] = int(cm.group(1))
+                    rest = ""
+                elif cm:
+                    rest = ""
+
                 if prev.get("type") == "text":
                     prev["text"] = (prev.get("text") or "") + star + rest
                 else:

@@ -166,7 +166,7 @@ public class DataSyncManager {
             entry.put("id", path.replace("/", "-"));
             entry.put("title", title);
             entry.put("date", year);
-            entry.put("text", text.length() > 800 ? text.substring(0, 800) : text);
+            entry.put("text", text);
             entry.put("link", "https://zh.kcwiki.cn/wiki/"
                     + URLEncoder.encode(pageTitle.replace(" ", "_"), "UTF-8").replace("+", "%20"));
             entry.put("images", images);
@@ -203,7 +203,7 @@ public class DataSyncManager {
             JSONObject entry = new JSONObject();
             entry.put("title", title.substring(title.lastIndexOf('/') + 1) + " 游戏更新");
             String text = stripWiki(page);
-            entry.put("text", text.length() > 1200 ? text.substring(0, 1200) : text);
+            entry.put("text", text);
             entry.put("link", "https://zh.kcwiki.cn/wiki/"
                     + URLEncoder.encode(title.replace(" ", "_"), "UTF-8").replace("+", "%20"));
             JSONArray images = new JSONArray();
@@ -272,9 +272,7 @@ public class DataSyncManager {
                 continue;
             }
             sb.append(line).append('\n');
-            if (++count >= 8) {
-                break;
-            }
+            // 保留全文，不再截断
         }
         return sb.toString().trim();
     }

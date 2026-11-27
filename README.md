@@ -82,9 +82,18 @@ echo "sdk.dir=/path/to/Android/sdk" > local.properties
 
 运行前需要 Python 3.8+ 与 `Pillow`；脚本会把抓取内容缓存在 `gen/cache/`。
 
+
+### 数据加载优先级（离线优先）
+
+1. `files/json/*.json`、`files/img/**`（用户在「关于」页点刷新 / 同步后写入的本地数据）
+2. APK 内置 `assets/**`（海图、头像、装备图、各数据表）
+3. 只有用户主动点「刷新」时才会访问 wiki / akashi-list.me；应用不会自动联网爬取
+
 ## 目录结构
 
 ```
+datagenerator/             离线数据源（api_start2 / ship.lua / equip.lua / ship.txt / ships.csv / 翻译表）
+server/                    活动 / 季节性 / 更新信息 PHP 接口
 app/src/main/java/rikka/akashitoolkit/   业务代码（ship、equip、quest、map、stats、sync…）
 app/src/main/assets/                     数据 JSON 与内置图片（mapimg、shipimg、equipimg）
 data-pipeline/                           数据生成脚本
@@ -101,7 +110,8 @@ data-pipeline/                           数据生成脚本
 ## 构建与发布（CI）
 
 - uild：push/PR 时构建 debug APK 作为 artifact
-- elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
+- 
+elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
 - 详细步骤见 [docs/CI-AND-SIGNING.md](docs/CI-AND-SIGNING.md)
 
 ## 许可证

@@ -34,6 +34,10 @@ public class QuestSyncManager {
     public static final String WIKI_RAW_URL =
             "https://zh.kcwiki.cn/index.php?title=%E4%BB%BB%E5%8A%A1&action=raw";
 
+    /** 任务页顶部的「新任务群」子页面（主页不含这些编号）。 */
+    private static final String WIKI_LATEST_URL =
+            "https://zh.kcwiki.cn/index.php?title=%E4%BB%BB%E5%8A%A1%2F%E6%9C%80%E6%96%B0%E4%BB%BB%E5%8A%A1&action=raw";
+
     public static final String OUTPUT_FILE = "Quest.json";
 
     public static class Result {
@@ -52,6 +56,37 @@ public class QuestSyncManager {
         List<JSONObject> quests = parse(text);
         if (quests.isEmpty()) {
             throw new IllegalStateException("没有解析到任务");
+        }
+
+        // 最新任务群：任务页顶部的「任务/最新任务」子页面（主页不包含这些编号）
+        try {
+            String latestText = download(WIKI_LATEST_URL);
+            if (latestText != null && latestText.length() > 200) {
+                List<JSONObject> latest = parse(latestText);
+                if (!latest.isEmpty()) {
+                    java.util.Map<String, JSONObject> existing = new java.util.HashMap<>();
+                    for (JSONObject q : quests) {
+                        existing.put(q.optString("code"), q);
+                    }
+                    int added = 0;
+                    for (int i = latest.size() - 1; i >= 0; i--) {
+                        JSONObject q = latest.get(i);
+                        q.put("newMission", true);
+                        String code = q.optString("code");
+                        JSONObject old = existing.get(code);
+                        if (old != null) {
+                            old.put("newMission", true);
+                        } else {
+                            quests.add(0, q);
+                            existing.put(code, q);
+                            added++;
+                        }
+                    }
+                    Log.d(TAG, "latest quests merged: " + added);
+                }
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "latest quests page failed", e);
         }
 
         // 由「前置」推导 unlock / after
@@ -488,7 +523,7 @@ public class QuestSyncManager {
             }
             // 单独的星级（★+2）并到上一条奖励名称里
             java.util.regex.Matcher star = java.util.regex.Pattern
-                    .compile("^\\s*[\\u2605\\u2606]\\s*[+\\uff0b]?\\s*\\d+").matcher(line);
+                    .compile("^\\s*[\\u2605\\u2606]\\s*(?:[mM][aA][xX]|[+\\uff0b]?\\s*\\d+)").matcher(line);
             if (star.find() && entries.length() > 0) {
                 String starText = star.group(0).replace(" ", "");
                 String rest = line.substring(star.end()).trim();
