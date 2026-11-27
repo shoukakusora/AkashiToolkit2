@@ -192,7 +192,7 @@ def game_info():
 
 def updates():
     data = api({"action": "query", "format": "json", "list": "allpages",
-                "apprefix": "游戏更新/", "aplimit": "500"})
+                "apprefix": "游戏更新/", "aplimit": "200", "apdir": "descending"})
     titles = [p["title"] for p in data.get("query", {}).get("allpages", [])]
 
     def key(t):
