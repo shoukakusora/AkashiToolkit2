@@ -136,7 +136,7 @@ public class DataSyncManager {
         home.put("updates", updates);
         home.put("seasonal", seasonal);
 
-        writeJson(context, "Home.json", home.toString());
+        writeJson(context, "Home2.json", home.toString());
         HomeData.clear();
         return seasonal.length() + updates.length();
     }

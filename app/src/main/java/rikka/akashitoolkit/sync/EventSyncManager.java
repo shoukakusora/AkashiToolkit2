@@ -33,7 +33,7 @@ public class EventSyncManager {
         if (array.length() == 0) {
             throw new IllegalStateException("events.json 为空");
         }
-        write(context, "Event.json", array.toString());
+        write(context, "Event2.json", array.toString());
         EventData.clear();
         return array.length();
     }

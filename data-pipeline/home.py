@@ -291,10 +291,8 @@ def main():
         "updates": up,
         "seasonal": se,
     }
-    json.dump(home, open(os.path.join(OUT, "Home.json"), "w", encoding="utf-8"), ensure_ascii=False)
-    json.dump(se, open(os.path.join(OUT, "Event.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    json.dump(home, open(os.path.join(OUT, "Home2.json"), "w", encoding="utf-8"), ensure_ascii=False)
     print("Home.json: game_info=%d updates=%d seasonal=%d" % (len(gi), len(up), len(se)))
-    print("Event.json: %d" % len(se))
 
 
 if __name__ == "__main__":

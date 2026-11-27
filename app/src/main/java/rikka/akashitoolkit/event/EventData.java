@@ -20,7 +20,7 @@ public class EventData {
     public static synchronized List<EventEntry> get(Context context) {
         if (sList == null) {
             List<EventEntry> list = new BaseGSONList<EventEntry>()
-                    .get(context, "Event.json", new TypeToken<ArrayList<EventEntry>>() {
+                    .get(context, "Event2.json", new TypeToken<ArrayList<EventEntry>>() {
                     }.getType());
             sList = list == null ? new ArrayList<EventEntry>() : list;
         }
