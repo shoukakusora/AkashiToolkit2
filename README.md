@@ -20,24 +20,24 @@
 | **主页** | 游戏情报 / 最新更新 / 季节性活动（含缩略图，可点开跳转） |
 | **离线** | 海图、舰娘/深海缩略图、装备立绘随包内置；「关于」页可一键补齐 wiki 上缺失的图，并可刷新各数据表 |
 
-## 数据来源
+## 数据来源与致谢
 
 | 来源 | 用途 |
 |---|---|
 | [舰娘百科 zh.kcwiki.cn](https://zh.kcwiki.cn/) | 舰娘、装备、任务、远征、海域、带路条件、季节性、游戏更新 |
-| [api.kcwiki.org](https://api.kcwiki.org/) | 游戏母数据、舰娘详情、海域目录 |
-| [upload.kcwiki.org](https://upload.kcwiki.org/) | 立绘与活动图片 |
-| [akashi-list.me](https://akashi-list.me/) | 每日改修（可改修舰娘与曜日） |
-| [db.kcwiki.cn](https://db.kcwiki.cn/) | 开发公式 / 掉落统计参考 |
-| [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit) | 应用本体（原作者 Rikka） |
+| [api.kcwiki.org](https://api.kcwiki.org/) | kcwiki 开放接口-（游戏母数据、舰娘详情、海域目录）|
+| [upload.kcwiki.org](https://upload.kcwiki.org/) |  舰娘百科-立绘与活动图片 |
+| [akashi-list.me](https://akashi-list.me/) | 每日改修-明石改修工厂（可改修舰娘与曜日） |
+| [db.kcwiki.cn](https://db.kcwiki.cn/) | poi-statistics@舰娘百科 （开发公式与掉落统计） |
+| [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit) | 原项目Akashi-Toolkit（原作者 Rikka） |
 
+- 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者，感谢大肥鱼deepseek及其团队。本构建仅做数据刷新与系统适配，不含商业用途。
 数据与图片版权归舰娘百科及其贡献者所有；**本应用为非商业同人工具**，不提供任何游戏本体资源。
 数据表内容遵循舰娘百科的授权条款（CC BY-NC-SA），二次使用请保留出处。
 
 ## 构建
 
 环境要求：**JDK 17**、Android SDK（compileSdk / targetSdk 34）、Gradle 7.6.4（仓库自带 wrapper）。
-
 ```bash
 # 1) 配置 SDK 路径
 echo "sdk.dir=/path/to/Android/sdk" > local.properties
@@ -101,8 +101,7 @@ data-pipeline/                           数据生成脚本
 ## 构建与发布（CI）
 
 - uild：push/PR 时构建 debug APK 作为 artifact
-- 
-elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
+- elease：推送 * 标签时用仓库 Secrets 里的 JKS 打签名包并创建 Release
 - 详细步骤见 [docs/CI-AND-SIGNING.md](docs/CI-AND-SIGNING.md)
 
 ## 许可证
