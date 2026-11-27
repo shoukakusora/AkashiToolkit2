@@ -31,10 +31,11 @@
 | [db.kcwiki.cn](https://db.kcwiki.cn/) | poi-statistics@舰娘百科 （开发公式与掉落统计） |
 | [kcwikizh/Akashi-Toolkit](https://github.com/kcwikizh/Akashi-Toolkit) | 原项目Akashi-Toolkit（原作者 Rikka） |
 
-- 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者，感谢大肥鱼deepseek及其团队。本构建仅做数据刷新与系统适配，不含商业用途。
-数据与图片版权归舰娘百科及其贡献者所有；**本应用为非商业同人工具**，不提供任何游戏本体资源。
-数据表内容遵循舰娘百科的授权条款（CC BY-NC-SA），二次使用请保留出处。
-
+- 感谢舰娘百科编辑组与素材整理者的长期维护，感谢原开发者Rikka及所有贡献者，感谢大肥鱼deepseek及其团队。
+- 数据与图片版权归舰娘百科及其贡献者所有；**本应用为非商业同人工具**，不提供任何游戏本体资源。
+- 数据表内容遵循舰娘百科的授权条款（CC BY-NC-SA），二次使用请保留出处。
+- 本构建仅做数据刷新与系统适配，不含商业用途。
+  
 ## 构建
 
 环境要求：**JDK 17**、Android SDK（compileSdk / targetSdk 34）、Gradle 7.6.4（仓库自带 wrapper）。
