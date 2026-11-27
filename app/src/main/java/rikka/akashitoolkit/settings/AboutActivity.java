@@ -401,6 +401,59 @@ public class AboutActivity extends BaseActivity {
             });
         }
 
+        final Preference checkUpdate = findPreference("check_update");
+        if (checkUpdate != null) {
+            checkUpdate.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    if (getActivity() == null) {
+                        return true;
+                    }
+                    final Preference pref = preference;
+                    pref.setEnabled(false);
+                    pref.setSummary("正在检查最新版本…");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String summary;
+                            final rikka.akashitoolkit.support.UpdateChecker.Info[] holder = new rikka.akashitoolkit.support.UpdateChecker.Info[1];
+                            String summary0 = "检查失败";
+                            try {
+                                rikka.akashitoolkit.support.UpdateChecker.Info info = rikka.akashitoolkit.support.UpdateChecker.check();
+                                holder[0] = info;
+                                if (rikka.akashitoolkit.support.UpdateChecker.isNewer(
+                                        info.version, rikka.akashitoolkit.BuildConfig.VERSION_NAME)) {
+                                    summary = "发现新版本 v" + info.version + "（GitHub Release）";
+                                } else {
+                                    summary0 = "已是最新版本 v" + rikka.akashitoolkit.BuildConfig.VERSION_NAME;
+                                }
+                            } catch (Exception e) {
+                                summary0 = "检查失败：" + e.getMessage();
+                            }
+                            final String text = summary0;
+                            if (getActivity() == null) {
+                                return;
+                            }
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    pref.setEnabled(true);
+                                    pref.setSummary(text);
+                                    if (holder[0] != null && rikka.akashitoolkit.support.UpdateChecker.isNewer(
+                                            holder[0].version, rikka.akashitoolkit.BuildConfig.VERSION_NAME)) {
+                                        rikka.akashitoolkit.support.UpdateChecker.showDialog(getActivity(), holder[0]);
+                                    } else {
+                                        Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+                    return true;
+                }
+            });
+        }
+
         final Preference syncConstruction = findPreference("sync_construction");
         if (syncConstruction != null) {
             syncConstruction.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

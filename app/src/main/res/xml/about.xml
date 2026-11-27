@@ -49,6 +49,11 @@
         android:summary="从舰娘百科重新抓取开发公式（与 db.kcwiki.cn/development 同源）"/>
 
     <Preference
+        android:key="check_update"
+        android:title="检查更新"
+        android:summary="检查 GitHub Release 上的最新版本，并从 Release 页下载"/>
+
+    <Preference
         android:key="sync_construction"
         android:title="刷新建造公式"
         android:summary="从舰娘百科重新抓取建造公式（普通公式 + 目标舰娘常用公式）"/>

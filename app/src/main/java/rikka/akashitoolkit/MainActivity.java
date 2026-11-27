@@ -78,6 +78,9 @@ public class MainActivity extends BaseActivity
 
         getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.background)));
 
+        // 启动时检查 GitHub Release（12 小时内只查一次，失败静默）
+        rikka.akashitoolkit.support.UpdateChecker.checkOnStart(this);
+
         mSwitch = findViewById(R.id.switch_bookmark);
 
         mToolbar = findViewById(R.id.toolbar);
