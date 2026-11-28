@@ -342,8 +342,9 @@ public class QuestViewHolder extends RecyclerView.ViewHolder implements IBindVie
 
                 Ship rewardShip = findShip(entry.id);
                 String bannerName = null;
-                if (rewardShip != null && rewardShip.getWikiId() != null) {
-                    bannerName = String.format("KanMusu%sBanner.jpg", rewardShip.getWikiId());
+                if (rewardShip != null) {
+                    bannerName = rikka.akashitoolkit.support.ImageStore.shipName(
+                            false, rewardShip.getWikiId(), rewardShip.getId());
                 }
                 // 头像：files/img（刷新补下载）优先，其次 assets
                 String bannerUrl = bannerName == null ? null

@@ -39,7 +39,14 @@ public class ImageStore {
         if (enemy) {
             return "ShinkaiSeikan" + id + "Banner.jpg";
         }
-        return "KanMusu" + (wikiId == null ? "" : wikiId) + "Banner.jpg";
+        // 舰娘缩略图统一使用 KanMusu<3位图鉴号>HDBanner（如八丈 384HDBanner）
+        String digits = wikiId == null ? "" : wikiId.replaceAll("\\D", "");
+        int no = 0;
+        try {
+            no = digits.isEmpty() ? 0 : Integer.parseInt(digits);
+        } catch (Exception ignored) {
+        }
+        return String.format("KanMusu%03dHDBanner.jpg", no);
     }
 
     public static String equipName(int equipId) {
