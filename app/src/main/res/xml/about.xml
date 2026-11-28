@@ -4,24 +4,24 @@
     android:key="screen">
 
     <Preference
+        android:key="check_update"
+        android:title="检查更新"
+        android:summary="检查 GitHub Release 上的最新版本，并从 Release 页下载"/>
+
+    <Preference
         android:key="feedback"
         android:title="@string/data_feedback"
         android:summary="首选现维护者 shoukakusora@hotmail.com（可选原开发者）"/>
 
     <Preference
-        android:key="developer_contact"
-        android:title="开发者联系方式"
-        android:summary="原作者 Rikka · rikkanyaaa+akashiToolkitFeedback@gmail.com"/>
+        android:key="data_source_thanks"
+        android:title="数据来源与致谢"
+        android:summary="舰娘百科 · kcwiki 开放接口 · 原开源项目"/>
 
     <Preference
         android:key="donate_alipay"
         android:title="我要打钱"
         android:summary="支付宝扫码（推荐使用支付宝）"/>
-
-    <Preference
-        android:key="data_source_thanks"
-        android:title="数据来源与致谢"
-        android:summary="舰娘百科 · kcwiki 开放接口 · 原开源项目"/>
 
     <Preference
         android:key="sync_expedition"
@@ -49,11 +49,6 @@
         android:summary="从舰娘百科重新抓取开发公式（与 db.kcwiki.cn/development 同源）"/>
 
     <Preference
-        android:key="check_update"
-        android:title="检查更新"
-        android:summary="检查 GitHub Release 上的最新版本，并从 Release 页下载"/>
-
-    <Preference
         android:key="sync_construction"
         android:title="刷新建造公式"
         android:summary="从舰娘百科重新抓取建造公式（普通公式 + 目标舰娘常用公式）"/>
@@ -76,7 +71,7 @@
     <Preference
         android:key="version"
         android:title="@string/version"
-        android:summary="0.14.3 (2026-11)"/>
+        android:summary="1.4.2 (2026-11)"/>
 
     <Preference
         android:title="@string/data_source"
@@ -87,6 +82,11 @@
             android:data="https://zh.kcwiki.cn/wiki/%E8%88%B0%E5%A8%98%E7%99%BE%E7%A7%91"/>
 
     </Preference>
+
+    <Preference
+        android:key="developer_contact"
+        android:title="开发者联系方式"
+        android:summary="原作者 Rikka · rikkanyaaa+akashiToolkitFeedback@gmail.com"/>
 
     <Preference
         android:title="@string/homepage"
@@ -105,6 +105,17 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/kcwikizh/Akashi-Toolkit"/>
+
+    </Preference>
+
+    <Preference
+        android:key="source_code_new"
+        android:title="源码（本构建 / kcwiki 数据版）"
+        android:summary="https://github.com/Shoukakusora/AkashiToolkit2">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/Shoukakusora/AkashiToolkit2"/>
 
     </Preference>
 
