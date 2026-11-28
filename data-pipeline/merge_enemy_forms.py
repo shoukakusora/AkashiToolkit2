@@ -11,6 +11,17 @@ BASE = r"C:\Users\Administrator\Documents\deepseek-harness\default-workspace\apk
 A = os.path.join(BASE, "appbuild", "app", "src", "main", "assets")
 
 
+# 指定某些编号作为同名组的“主条目”（其余形态并入它的 forms）
+PREFERRED = {2308}
+
+
+def canonical(forms):
+    for ship in forms:
+        if ship["id"] in PREFERRED:
+            return ship
+    return forms[0]
+
+
 def main():
     path = os.path.join(A, "Ship.json")
     ships = json.load(open(path, encoding="utf-8"))
@@ -30,7 +41,7 @@ def main():
     total_forms = 0
     for name in order:
         forms = sorted(groups[name], key=lambda s: s["id"])
-        base = forms[0]
+        base = canonical(forms)
         if len(forms) > 1:
             total_forms += len(forms)
             base = json.loads(json.dumps(base))
