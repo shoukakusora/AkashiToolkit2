@@ -122,7 +122,7 @@ def parse_reward(text, ship_map, equip_map, item_map):
         if m:
             entries.append({"type": "text", "text": m.group(0).replace(":", "：")})
             pos = m.end()
-    return _merge_stars(entries)
+    return _merge_text_values(_merge_stars(entries))
 
 
 STAR_RE = re.compile(r"^\s*[\u2605\u2606]\s*(?:[mM][aA][xX]|[+\uff0b]?\s*\d+)")
@@ -215,3 +215,21 @@ def build_entries(wikitext, maps=None):
     if maps is None:
         maps = load_maps()
     return parse_reward(wikitext, *maps)
+
+TEXT_VALUE_RE = re.compile(r"^[+\uff0b]\s*(\d+)$")
+
+
+def _merge_text_values(entries):
+    """鎶娿€佽�澶囦繚鏈変綅銆?+銆?6銆嶈繖绉嶁€滄枃鏈?鏁板€尖€濇媶鎴愮殑涓ゆ潯鍚堝苟鎴愪竴鏉°€?"""
+    merged = []
+    for e in entries:
+        if merged and e.get("type") == "text":
+            text = (e.get("text") or "").strip()
+            m = TEXT_VALUE_RE.match(text)
+            prev = merged[-1]
+            if m and prev.get("type") == "text":
+                prev["text"] = (prev.get("text") or "") + "+" + m.group(1)
+                continue
+        merged.append(e)
+    return merged
+

@@ -220,7 +220,7 @@ public class ShipAdapter extends BaseBookmarkRecyclerAdapter<RecyclerView.ViewHo
             //return item.getId() >= 500;
         }
 
-        if (item.isEnemy()) {
+        if (item.isEnemy() || item.isHidden()) {
             return false;
         }
 

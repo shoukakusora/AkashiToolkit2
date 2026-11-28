@@ -90,7 +90,7 @@ public class ShipDetailRemodelViewHolder extends RecyclerView.ViewHolder impleme
             cur = ShipList.findItemById(cur.getRemodel().getFromId());
         }
 
-        mList.add(new Adapter.Data(cur.getId(), cur, 0, false, false, false));
+        mList.add(new Adapter.Data(cur.getId(), cur, 0, false, false, false, null));
         mSpanSizeList.add(1);
 
         cur = ShipList.findItemById(cur.getRemodel().getToId());
@@ -101,7 +101,7 @@ public class ShipDetailRemodelViewHolder extends RecyclerView.ViewHolder impleme
                 Ship.RemodelEntity remodel = prev.getRemodel();
                 Ship next = ShipList.findItemById(cur.getRemodel().getToId());
                 boolean can_back = next != null && next.getRemodel().getToId() != 0 && next.getRemodel().getFromId() == next.getRemodel().getToId();
-                mList.add(new Adapter.Data(cur.getId(), cur, remodel.getLevel(), can_back, remodel.requireBlueprint(), remodel.requireCatapult()));
+                mList.add(new Adapter.Data(cur.getId(), cur, remodel.getLevel(), can_back, remodel.requireBlueprint(), remodel.requireCatapult(), remodel.getMaterials()));
                 mSpanSizeList.add(1);
             }
 
@@ -126,14 +126,17 @@ public class ShipDetailRemodelViewHolder extends RecyclerView.ViewHolder impleme
             public boolean can_back;
             public boolean blueprint;
             public boolean catapult;
+            public Ship.MaterialEntity[] materials;
 
-            public Data(int id, Ship ship, int level, boolean can_back, boolean blueprint, boolean catapult) {
+            public Data(int id, Ship ship, int level, boolean can_back, boolean blueprint, boolean catapult,
+                        Ship.MaterialEntity[] materials) {
                 this.id = id;
                 this.ship = ship;
                 this.level = level;
                 this.can_back = can_back;
                 this.blueprint = blueprint;
                 this.catapult = catapult;
+                this.materials = materials;
             }
         }
 
@@ -193,6 +196,14 @@ public class ShipDetailRemodelViewHolder extends RecyclerView.ViewHolder impleme
                 }
                 if (data.catapult) {
                     sb.append(" + ").append(holder.itemView.getContext().getString(R.string.catapult));
+                }
+                if (data.materials != null) {
+                    for (Ship.MaterialEntity material : data.materials) {
+                        if (material == null || material.getName() == null) {
+                            continue;
+                        }
+                        sb.append(" + ").append(material.getName()).append("×").append(material.getCount());
+                    }
                 }
                 sb.append(")");
             }

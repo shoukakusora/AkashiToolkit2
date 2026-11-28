@@ -17,6 +17,12 @@ public class Ship extends BaseDataModel {
     private int rarity;
     private String name_for_search;
 
+    private boolean hidden;
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
     private ShipType ship_type;
 
     public ShipType getShipType() {
@@ -171,6 +177,7 @@ public class Ship extends BaseDataModel {
         private int to_id;
         private int level;
         private int[] cost;
+        private MaterialEntity[] materials;
 
         /**
          * @return 是否需要“试制甲板用弹射器”
@@ -201,6 +208,24 @@ public class Ship extends BaseDataModel {
 
         public int[] getCost() {
             return cost;
+        }
+
+        /** 改造所需资材（改装设计图、战斗详报、高速建造材…），可能为空。 */
+        public MaterialEntity[] getMaterials() {
+            return materials;
+        }
+    }
+
+    public static class MaterialEntity {
+        private String name;
+        private int count;
+
+        public String getName() {
+            return name;
+        }
+
+        public int getCount() {
+            return count;
         }
     }
 

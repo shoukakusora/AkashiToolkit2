@@ -510,7 +510,34 @@ public class QuestSyncManager {
             i++;
         }
         flushTextEntry(entries, text);
-        return entries;
+        return mergeTextValues(entries);
+    }
+
+    /** Merge split text values like equipment-slot + "+6". */
+    private static JSONArray mergeTextValues(JSONArray entries) {
+        try {
+            JSONArray out = new JSONArray();
+            for (int i = 0; i < entries.length(); i++) {
+                org.json.JSONObject item = entries.optJSONObject(i);
+                if (item == null) {
+                    continue;
+                }
+                String type = item.optString("type", "");
+                String text = item.optString("text", "");
+                if ("text".equals(type) && text.trim().matches("^[+\uff0b]\\s*\\d+$")
+                        && out.length() > 0) {
+                    org.json.JSONObject prev = out.optJSONObject(out.length() - 1);
+                    if (prev != null && "text".equals(prev.optString("type", ""))) {
+                        prev.put("text", prev.optString("text", "") + text.trim());
+                        continue;
+                    }
+                }
+                out.put(item);
+            }
+            return out;
+        } catch (Exception e) {
+            return entries;
+        }
     }
 
     private static void flushTextEntry(JSONArray entries, StringBuilder text) {
