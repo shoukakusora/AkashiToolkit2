@@ -42,6 +42,15 @@ final class WikiGameInfo {
             body = text;
         }
 
+        JSONArray out = parseBullets(body);
+        if (out.length() == 0) {
+            out = parseBullets(text);
+        }
+        Log.d("WikiGameInfo", "game info entries: " + out.length());
+        return out;
+    }
+
+    private static JSONArray parseBullets(String body) throws Exception {
         JSONArray out = new JSONArray();
         Matcher b = BULLET.matcher(body == null ? "" : body);
         while (b.find() && out.length() < 20) {
@@ -77,8 +86,6 @@ final class WikiGameInfo {
             entry.put("images", images);
             out.put(entry);
         }
-
-        Log.d("WikiGameInfo", "game info entries: " + out.length());
         return out;
     }
 

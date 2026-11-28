@@ -151,6 +151,15 @@ public class DataSyncManager {
             }
         }
 
+        // 再次按年份倒序（防止抓取顺序异常），并校验最新年份
+        JSONArray sorted = HomeRefreshHelper.sortSeasonal(seasonal);
+        if (sorted != null) {
+            seasonal = sorted;
+        }
+        if (!HomeRefreshHelper.looksRecent(seasonal)) {
+            throw new IllegalStateException("季节性数据异常（最新年份不是近年），已保留旧数据");
+        }
+
         // 仅最新季节展示内容，历史季节只保留标题
         for (int i = 0; i < seasonal.length(); i++) {
             if (i == 0) {
@@ -175,20 +184,26 @@ public class DataSyncManager {
         if (gameInfo == null || gameInfo.length() == 0) {
             gameInfo = new JSONArray();
             try {
-                String old = http("file:///android_asset/Home2.json", null);
-                JSONObject oldHome = new JSONObject(old);
-                JSONArray bundled = oldHome.optJSONArray("game_info");
-                if (bundled != null) {
-                    gameInfo = bundled;
+                String old = HomeRefreshHelper.readAsset(context, "Home3.json");
+                if (old != null) {
+                    JSONObject oldHome = new JSONObject(old);
+                    JSONArray bundled = oldHome.optJSONArray("game_info");
+                    if (bundled != null && bundled.length() > 0) {
+                        gameInfo = bundled;
+                    }
                 }
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                Log.w(TAG, "bundled game info fallback failed", e);
             }
+        }
+        if (gameInfo.length() == 0) {
+            throw new IllegalStateException("游戏情报抓取为空，已保留旧数据");
         }
         home.put("game_info", gameInfo);
         home.put("updates", updates);
         home.put("seasonal", seasonal);
 
-        writeJson(context, "Home2.json", home.toString());
+        writeJson(context, "Home3.json", home.toString());
         HomeData.clear();
         return seasonal.length() + updates.length();
     }

@@ -69,6 +69,8 @@ final class DataSyncHelper {
             return "";
         }
         s = s.replaceAll("\\[\\[(?:File|文件|Image):[^\\]]*\\]\\]", "");
+        // 颜色模板先取出内部文字，避免 [[a|{{Red|b}}]] 被整体清空
+        s = s.replaceAll("\\{\\{(?:Green|Red|Blue|Purple|Color|Colour)\\s*\\|([^{}]*)\\}\\}", "$1");
         s = s.replaceAll("\\[\\[[^\\]|]*\\|([^\\]]*)\\]\\]", "$1");
         s = s.replaceAll("\\[\\[([^\\]]*)\\]\\]", "$1");
         s = s.replaceAll("\\{\\{[^{}|]*\\|([^{}]*)\\}\\}", "$1");

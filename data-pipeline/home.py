@@ -291,7 +291,7 @@ def main():
         "updates": up,
         "seasonal": se,
     }
-    json.dump(home, open(os.path.join(OUT, "Home2.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    json.dump(home, open(os.path.join(OUT, "Home3.json"), "w", encoding="utf-8"), ensure_ascii=False)
     print("Home.json: game_info=%d updates=%d seasonal=%d" % (len(gi), len(up), len(se)))
 
 
