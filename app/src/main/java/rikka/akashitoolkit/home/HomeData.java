@@ -50,7 +50,7 @@ public class HomeData {
         if (sInstance == null) {
             HomeData data = null;
             try {
-                data = (HomeData) new BaseGSON().get(context, "Home3.json", HomeData.class);
+                data = (HomeData) new BaseGSON().get(context, "Home4.json", HomeData.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }

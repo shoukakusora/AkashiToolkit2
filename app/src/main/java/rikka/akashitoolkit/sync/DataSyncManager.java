@@ -175,27 +175,29 @@ public class DataSyncManager {
         JSONArray updates = syncUpdates(context);
 
         JSONObject home = new JSONObject();
-        JSONArray gameInfo = null;
+        // 以当前内置数据为基调
+        JSONArray baseline = new JSONArray();
         try {
-            gameInfo = WikiGameInfo.load(context);
-        } catch (Exception e) {
-            Log.w(TAG, "game info sync failed, fallback to bundled", e);
-        }
-        if (gameInfo == null || gameInfo.length() == 0) {
-            gameInfo = new JSONArray();
-            try {
-                String old = HomeRefreshHelper.readAsset(context, "Home3.json");
-                if (old != null) {
-                    JSONObject oldHome = new JSONObject(old);
-                    JSONArray bundled = oldHome.optJSONArray("game_info");
-                    if (bundled != null && bundled.length() > 0) {
-                        gameInfo = bundled;
-                    }
+            String old = HomeRefreshHelper.readAsset(context, "Home4.json");
+            if (old != null) {
+                JSONObject oldHome = new JSONObject(old);
+                JSONArray bundled = oldHome.optJSONArray("game_info");
+                if (bundled != null) {
+                    baseline = bundled;
                 }
-            } catch (Exception e) {
-                Log.w(TAG, "bundled game info fallback failed", e);
             }
+        } catch (Exception e) {
+            Log.w(TAG, "read bundled game info failed", e);
         }
+
+        JSONArray wikiInfo = null;
+        try {
+            wikiInfo = WikiGameInfo.load(context);
+        } catch (Exception e) {
+            Log.w(TAG, "game info sync failed, keep bundled", e);
+        }
+
+        JSONArray gameInfo = mergeGameInfo(wikiInfo, baseline);
         if (gameInfo.length() == 0) {
             throw new IllegalStateException("游戏情报抓取为空，已保留旧数据");
         }
@@ -203,9 +205,37 @@ public class DataSyncManager {
         home.put("updates", updates);
         home.put("seasonal", seasonal);
 
-        writeJson(context, "Home3.json", home.toString());
+        writeJson(context, "Home4.json", home.toString());
         HomeData.clear();
         return seasonal.length() + updates.length();
+    }
+
+
+    /** 以内置条目为基调：wiki 抓到的新条目放最前，其余保留内置内容。 */
+    private static JSONArray mergeGameInfo(JSONArray wiki, JSONArray baseline) throws Exception {
+        JSONArray out = new JSONArray();
+        java.util.Set<String> seen = new java.util.HashSet<>();
+        if (wiki != null) {
+            for (int i = 0; i < wiki.length() && out.length() < 20; i++) {
+                JSONObject item = wiki.optJSONObject(i);
+                if (item == null) continue;
+                String title = item.optString("title", "");
+                if (title.isEmpty() || seen.contains(title)) continue;
+                seen.add(title);
+                out.put(item);
+            }
+        }
+        if (baseline != null) {
+            for (int i = 0; i < baseline.length() && out.length() < 20; i++) {
+                JSONObject item = baseline.optJSONObject(i);
+                if (item == null) continue;
+                String title = item.optString("title", "");
+                if (title.isEmpty() || seen.contains(title)) continue;
+                seen.add(title);
+                out.put(item);
+            }
+        }
+        return out;
     }
 
     /** 构建单个季节条目（失败返回 null）。 */

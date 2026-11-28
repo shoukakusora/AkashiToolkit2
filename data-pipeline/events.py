@@ -128,7 +128,7 @@ def main():
         print("no event pages found")
         return
 
-    for path in (os.path.join(ASSETS, "Event2.json"),
+    for path in (os.path.join(ASSETS, "Event3.json"),
                  os.path.join(SERVER, "events.json")):
         os.makedirs(os.path.dirname(path), exist_ok=True)
         json.dump(entries, open(path, "w", encoding="utf-8"), ensure_ascii=False)
