@@ -398,14 +398,23 @@ public class ShipAdapter extends BaseBookmarkRecyclerAdapter<RecyclerView.ViewHo
         if (showBanner) {
             holder.mIconContainer.setVisibility(View.VISIBLE);
 
-            Glide.with(context)
-                    .load(banner)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.ship_thumb_placeholder)
-                    .error(R.drawable.ship_thumb_placeholder)
-                    .crossFade()
-                    .centerCrop()
-                    .into(holder.mIcon);
+            // 有官方图才显示；没有则隐藏图标位（不再使用占位立绘）
+            String thumbName = mEnemy
+                    ? String.format("ShinkaiSeikan%dBanner.jpg", item.getId())
+                    : String.format("KanMusu%03dHDBanner.jpg",
+                    thumbNumber(item.getWikiId()));
+            boolean hasThumb = hasShipThumb(context, thumbName);
+            if (!hasThumb) {
+                holder.mIconContainer.setVisibility(View.GONE);
+            } else {
+                holder.mIconContainer.setVisibility(View.VISIBLE);
+                Glide.with(context)
+                        .load(banner)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .crossFade()
+                        .centerCrop()
+                        .into(holder.mIcon);
+            }
         } else {
             holder.mIconContainer.setVisibility(View.GONE);
         }
@@ -566,4 +575,38 @@ public class ShipAdapter extends BaseBookmarkRecyclerAdapter<RecyclerView.ViewHo
         mLastHolder = null;
         super.onDetachedFromRecyclerView(recyclerView);
     }
+
+    private static int thumbNumber(String wikiId) {
+        String digits = wikiId == null ? "" : wikiId.replaceAll("\\D", "");
+        try {
+            return digits.isEmpty() ? 0 : Integer.parseInt(digits);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    private static java.util.Set<String> sAssetThumbs;
+
+    private static boolean hasShipThumb(android.content.Context context, String name) {
+        if (context == null) {
+            return false;
+        }
+        if (rikka.akashitoolkit.support.ImageStore.localFile(
+                context, rikka.akashitoolkit.support.ImageStore.DIR_SHIP, name).exists()) {
+            return true;
+        }
+        if (sAssetThumbs == null) {
+            java.util.Set<String> set = new java.util.HashSet<>();
+            try {
+                String[] list = context.getAssets().list(rikka.akashitoolkit.support.ImageStore.DIR_SHIP);
+                if (list != null) {
+                    java.util.Collections.addAll(set, list);
+                }
+            } catch (Exception ignored) {
+            }
+            sAssetThumbs = set;
+        }
+        return sAssetThumbs.contains(name);
+    }
+
 }

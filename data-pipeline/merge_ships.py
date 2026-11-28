@@ -1,7 +1,7 @@
-"""Merge ships with EXACTLY the same display name — player ships only.
+"""Merge ships with EXACTLY the same display name (players and enemies).
 
-深海栖姬按 wiki「深海栖舰列表」逐条保留（名字已带 elite / flagship / 改flagship / 后期型
-等后缀，属于不同舰船，不再合并）。
+Also used to decide which bundled thumbnails are still needed: entries merged
+away no longer need an image, and placeholder copies must not be shipped.
 """
 import json
 import os
@@ -17,9 +17,6 @@ def main():
     seen = set()
     out = []
     for ship in sorted(ships, key=lambda s: s["id"]):
-        if ship["id"] >= 1500:
-            out.append(ship)
-            continue
         name = (ship.get("name") or {}).get("zh_cn") or ""
         if name in seen:
             continue
