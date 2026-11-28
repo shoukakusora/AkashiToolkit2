@@ -1,11 +1,7 @@
-"""Merge ships with EXACTLY the same display name (only).
+"""Merge ships with EXACTLY the same display name — player ships only.
 
-Latest rule from the user:
-  * 仅合并同名条目（名字完全一致）；
-  * 「-坏」中破形态不再合并，保留为独立条目；
-  * 「量产型」「初期型」「后期型」「flagship」「夏季上陆模式」「假日模式」「夏日模式」
-    「（哨戒机配备）」「登陆中」「Ⅱ」「Ⅳ」等限定后缀都视为不同舰船，不合并
-    （它们名字本来就不同，自然不会被合并）。
+深海栖姬按 wiki「深海栖舰列表」逐条保留（名字已带 elite / flagship / 改flagship / 后期型
+等后缀，属于不同舰船，不再合并）。
 """
 import json
 import os
@@ -21,6 +17,9 @@ def main():
     seen = set()
     out = []
     for ship in sorted(ships, key=lambda s: s["id"]):
+        if ship["id"] >= 1500:
+            out.append(ship)
+            continue
         name = (ship.get("name") or {}).get("zh_cn") or ""
         if name in seen:
             continue

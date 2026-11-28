@@ -15,6 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,17 +96,18 @@ public class DataSyncManager {
 
     /** 刷新主页：最近更新 + 季节性（图片与链接一并更新）。 */
     public static int syncHome(Context context) throws Exception {
-        JSONArray seasonal = new JSONArray();
-
         String seasonalPage = wikiRaw("季节性");
+
+        // 先按年份收集（页面顺序是从旧到新），之后按年份倒序、同年内倒序
         String curYear = "";
         List<String[]> items = new ArrayList<>();
+        List<Object[]> blocks = new ArrayList<>();   // [year, items]
         for (String rawLine : seasonalPage.split("\n")) {
             String line = rawLine.trim();
             Matcher hm = Pattern.compile("^==\\s*(\\d{4})年\\s*==$").matcher(line);
             if (hm.find()) {
-                if (!curYear.isEmpty()) {
-                    appendSeasonal(context, seasonal, curYear, items);
+                if (!curYear.isEmpty() && !items.isEmpty()) {
+                    blocks.add(new Object[]{curYear, items});
                 }
                 curYear = hm.group(1);
                 items = new ArrayList<>();
@@ -115,22 +118,71 @@ public class DataSyncManager {
                 items.add(new String[]{lm.group(2).trim(), lm.group(1).trim()});
             }
         }
-        if (!curYear.isEmpty()) {
-            appendSeasonal(context, seasonal, curYear, items);
+        if (!curYear.isEmpty() && !items.isEmpty()) {
+            blocks.add(new Object[]{curYear, items});
+        }
+
+        // 年份倒序（2026 在最前）
+        Collections.sort(blocks, new Comparator<Object[]>() {
+            @Override
+            public int compare(Object[] a, Object[] b) {
+                return ((String) b[0]).compareTo((String) a[0]);
+            }
+        });
+
+        JSONArray seasonal = new JSONArray();
+        for (Object[] block : blocks) {
+            String year = (String) block[0];
+            @SuppressWarnings("unchecked")
+            List<String[]> yearItems = (List<String[]>) block[1];
+            // 同年内按页面顺序倒序（最新季节在前）
+            for (int i = yearItems.size() - 1; i >= 0; i--) {
+                JSONObject entry = buildSeasonalEntry(context, year,
+                        yearItems.get(i)[0], yearItems.get(i)[1]);
+                if (entry != null) {
+                    seasonal.put(entry);
+                }
+                if (seasonal.length() >= 14) {
+                    break;
+                }
+            }
+            if (seasonal.length() >= 14) {
+                break;
+            }
+        }
+
+        // 仅最新季节展示内容，历史季节只保留标题
+        for (int i = 0; i < seasonal.length(); i++) {
+            if (i == 0) {
+                continue;
+            }
+            JSONObject entry = seasonal.optJSONObject(i);
+            if (entry != null) {
+                entry.put("text", "");
+                entry.put("images", new JSONArray());
+            }
         }
 
         JSONArray updates = syncUpdates(context);
 
         JSONObject home = new JSONObject();
-        JSONArray gameInfo = new JSONArray();
+        JSONArray gameInfo = null;
         try {
-            String old = http("file:///android_asset/Home2.json", null);
-            JSONObject oldHome = new JSONObject(old);
-            gameInfo = oldHome.optJSONArray("game_info");
-        } catch (Exception ignored) {
+            gameInfo = WikiGameInfo.load(context);
+        } catch (Exception e) {
+            Log.w(TAG, "game info sync failed, fallback to bundled", e);
         }
-        if (gameInfo == null) {
+        if (gameInfo == null || gameInfo.length() == 0) {
             gameInfo = new JSONArray();
+            try {
+                String old = http("file:///android_asset/Home2.json", null);
+                JSONObject oldHome = new JSONObject(old);
+                JSONArray bundled = oldHome.optJSONArray("game_info");
+                if (bundled != null) {
+                    gameInfo = bundled;
+                }
+            } catch (Exception ignored) {
+            }
         }
         home.put("game_info", gameInfo);
         home.put("updates", updates);
@@ -141,27 +193,25 @@ public class DataSyncManager {
         return seasonal.length() + updates.length();
     }
 
-    private static void appendSeasonal(Context context, JSONArray out, String year, List<String[]> items)
-            throws Exception {
-        for (int i = items.size() - 1; i >= 0; i--) {  // 同一年的最新季节排在前面
-            String title = items.get(i)[0];
-            String path = items.get(i)[1];
-            String pageTitle = "季节性" + path;
-            JSONArray images = new JSONArray();
-            String text = "";
-            try {
-                String page = wikiRaw(pageTitle);
-                for (String name : imagesOf(page)) {
-                    images.put(name);
-                    if (images.length() >= 6) {
-                        break;
-                    }
+    /** 构建单个季节条目（失败返回 null）。 */
+    private static JSONObject buildSeasonalEntry(Context context, String year, String title, String path) {
+        String pageTitle = "季节性" + path;
+        JSONArray images = new JSONArray();
+        String text = "";
+        try {
+            String page = wikiRaw(pageTitle);
+            for (String name : imagesOf(page)) {
+                images.put(name);
+                if (images.length() >= 6) {
+                    break;
                 }
-                text = stripWiki(page);
-            } catch (Exception e) {
-                Log.w(TAG, "seasonal page failed: " + pageTitle, e);
             }
+            text = stripWiki(page);
+        } catch (Exception e) {
+            Log.w(TAG, "seasonal page failed: " + pageTitle, e);
+        }
 
+        try {
             JSONObject entry = new JSONObject();
             entry.put("id", path.replace("/", "-"));
             entry.put("title", title);
@@ -170,7 +220,9 @@ public class DataSyncManager {
             entry.put("link", "https://zh.kcwiki.cn/wiki/"
                     + URLEncoder.encode(pageTitle.replace(" ", "_"), "UTF-8").replace("+", "%20"));
             entry.put("images", images);
-            out.put(entry);
+            return entry;
+        } catch (Exception e) {
+            return null;
         }
     }
 

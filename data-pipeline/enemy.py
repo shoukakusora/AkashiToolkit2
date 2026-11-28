@@ -204,6 +204,11 @@ def main():
             continue
         seen.add(sid)
         name_cn = clean(f.get("名字")) or clean(f.get("中文名"))
+        # 参考 wiki 深海栖舰列表：名字 + 级别（elite / flagship / 改flagship / 后期型 …）
+        level = clean(f.get("级别"))
+        level = re.sub(r"^\d+$", "", level)
+        if level and level not in name_cn:
+            name_cn = name_cn + level
         name_ja = name_cn
         attr = {k: 0 for k in ATTR_KEYS}
         attr["hp"] = num(f.get("耐久"))
