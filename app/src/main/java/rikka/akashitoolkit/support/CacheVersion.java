@@ -17,7 +17,7 @@ import rikka.akashitoolkit.staticdata.QuestList;
 public final class CacheVersion {
 
     /** 每次内置数据有结构性更新时 +1。 */
-    public static final int CACHE_VERSION = 7;
+    public static final int CACHE_VERSION = 8;
 
     private static final String KEY = "data_cache_version";
 

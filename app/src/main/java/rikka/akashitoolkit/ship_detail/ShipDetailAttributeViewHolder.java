@@ -49,6 +49,18 @@ public class ShipDetailAttributeViewHolder extends AttributeViewHolder implement
             adapter.add(R.string.attr_range, KCStringFormatter.getRange(context, attr.getRange()));
 
             add(adapter, R.string.attr_luck, attr.getLuck(), attr_max.getLuck());
+        } else if (data.getForms() != null && data.getForms().length > 1) {
+            // 同名深海：耐久 700→700→700、火力 132→162→182
+            adapter.add(R.string.attr_hp, join(data, "hp", attr.getHP()));
+            adapter.add(R.string.attr_firepower, join(data, "fire", attr.getFirepower()));
+            adapter.add(R.string.attr_aa, join(data, "aa", attr.getAA()));
+            adapter.add(R.string.attr_torpedo, join(data, "torpedo", attr.getTorpedo()));
+            adapter.add(R.string.attr_armor, join(data, "armor", attr.getArmor()));
+            adapter.add(R.string.attr_asw, join(data, "asw", attr.getASW()));
+            adapter.add(R.string.attr_evasion, join(data, "evasion", attr.getEvasion()));
+            adapter.add(R.string.attr_los, join(data, "los", attr.getLOS()));
+            adapter.add(R.string.attr_speed, KCStringFormatter.getSpeed(context, attr.getSpeed()));
+            adapter.add(R.string.attr_range, KCStringFormatter.getRange(context, attr.getRange()));
         } else {
             adapter.add(R.string.attr_hp, attr.getHP());
             addEnemy(adapter, R.string.attr_firepower, attr.getFirepower(), attr_max.getFirepower());
@@ -58,6 +70,54 @@ public class ShipDetailAttributeViewHolder extends AttributeViewHolder implement
             adapter.add(R.string.attr_speed, KCStringFormatter.getSpeed(context, attr.getSpeed()));
             adapter.add(R.string.attr_range, KCStringFormatter.getRange(context, attr.getRange()));
         }
+    }
+
+    /** 多形态属性用箭头连接；数值全相同则只显示一次。 */
+    private String join(Ship data, String key, int fallback) {
+        AttributeEntity[] forms = data.getForms();
+        StringBuilder sb = new StringBuilder();
+        boolean same = true;
+        Integer first = null;
+        for (AttributeEntity form : forms) {
+            if (form == null) {
+                continue;
+            }
+            int value = valueOf(form, key, fallback);
+            if (first == null) {
+                first = value;
+            } else if (first != value) {
+                same = false;
+            }
+            if (sb.length() > 0) {
+                sb.append("\u2192");
+            }
+            sb.append(value);
+        }
+        if (sb.length() == 0) {
+            return String.format("%d", fallback);
+        }
+        return same ? String.format("%d", first) : sb.toString();
+    }
+
+    private int valueOf(AttributeEntity form, String key, int fallback) {
+        if ("hp".equals(key)) {
+            return form.getHP();
+        } else if ("fire".equals(key)) {
+            return form.getFirepower();
+        } else if ("aa".equals(key)) {
+            return form.getAA();
+        } else if ("torpedo".equals(key)) {
+            return form.getTorpedo();
+        } else if ("armor".equals(key)) {
+            return form.getArmor();
+        } else if ("asw".equals(key)) {
+            return form.getASW();
+        } else if ("evasion".equals(key)) {
+            return form.getEvasion();
+        } else if ("los".equals(key)) {
+            return form.getLOS();
+        }
+        return fallback;
     }
 
     @SuppressLint("DefaultLocale")

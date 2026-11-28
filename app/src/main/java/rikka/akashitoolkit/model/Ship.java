@@ -230,6 +230,13 @@ public class Ship extends BaseDataModel {
     }
 
     private AttributeEntity attr;
+
+    /** 同名深海的多形态属性（按编号顺序），用于显示 132→162→182。 */
+    private AttributeEntity[] forms;
+
+    public AttributeEntity[] getForms() {
+        return forms;
+    }
     private AttributeEntity attr_max;
     private AttributeEntity attr_99;
     private AttributeEntity attr_155;
