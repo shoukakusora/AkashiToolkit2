@@ -257,16 +257,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-def _merge_after_write():
-    """写入 assets 后合并同名舰船 / 深海 -坏 形态。"""
-    try:
-        import merge_ships
-        merge_ships.main()
-    except Exception as exc:  # noqa: BLE001
-        print("merge_ships skipped:", exc)
-
-
-if __name__ == "__main__":
-    _merge_after_write()
